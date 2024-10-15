@@ -12,3 +12,8 @@
 - object
  - access property by name 3 ways
   - dot notition , braket notation , assain a variable
+
+  #### 37.2- Template string ,arrow function ,spread operator
+  - template string
+  - arrow function 
+  - spread operator

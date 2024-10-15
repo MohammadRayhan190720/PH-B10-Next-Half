@@ -28,3 +28,5 @@
   - keys , values => Object.keys() , object.values()
   - forEach ,for-of => Array 
   - for in => object
+
+  #### 37.6 - truety , falsey,ternary,shortcut and or

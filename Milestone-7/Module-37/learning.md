@@ -19,4 +19,6 @@
   - spread operator
 
   #### 37.3 - Array Methods - forEach , Map , filter , find
-  - 
+  
+  #### 37.4 - Array and Object destructring
+  

@@ -23,3 +23,15 @@ if(!name){
 }else {
   console.log("truety values");
 }
+
+//number to string conversion
+const result = 5;
+console.log(result);
+const resultStr = result + '';
+console.log(resultStr);
+
+//string to number conversion
+const age = "26";
+console.log(age);
+const ageNum = +age;
+console.log(ageNum);

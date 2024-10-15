@@ -17,3 +17,6 @@
   - template string
   - arrow function 
   - spread operator
+
+  #### 37.3 - Array Methods - forEach , Map , filter , find
+  - 

@@ -30,3 +30,7 @@
   - for in => object
 
   #### 37.6 - truety , falsey,ternary,shortcut and or
+
+  #### 37.7 -Explore localStroage with JSON
+
+  #### 37.8 - dot vs braket notation

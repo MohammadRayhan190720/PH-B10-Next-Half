@@ -21,4 +21,10 @@
   #### 37.3 - Array Methods - forEach , Map , filter , find
   
   #### 37.4 - Array and Object destructring
-  
+
+  #### 37.5 - Json , fetch , keys , values , array add or remove useing dot
+  - JSON => stringify , parse
+  - fetch => 
+  - keys , values => Object.keys() , object.values()
+  - forEach ,for-of => Array 
+  - for in => object

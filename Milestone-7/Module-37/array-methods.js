@@ -39,3 +39,12 @@ console.log(brandName);
 //forEach
 
 brandProducts.forEach(product => console.log(product.category));
+
+//filter
+
+const cheapRate  = brandProducts.filter(product => product.price > 800);
+console.log(cheapRate);
+
+//find
+const cheapRate2  = brandProducts.find(product => product.price > 800);
+console.log(cheapRate2);

@@ -21,3 +21,6 @@
 --Data binding
 - ReactJs is a one-way data binding
 - angular is a two way data binding
+
+#### 38.2- What is Components,Conponent Types,Build Your frist components
+- 

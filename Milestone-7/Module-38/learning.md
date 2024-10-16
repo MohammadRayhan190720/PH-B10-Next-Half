@@ -45,3 +45,25 @@
   -- How to build a component?
   - Export the component
   - Define the function
+
+  #### 38.3- JSX,Its rules and add dynamic content to jSX in your frist component
+
+  ##### What is JSX?
+  - JSX is a syntax extension for Javascript 
+  - JSX stands for Javascript XML
+  - Lets you write HTML_LIKE - Markup inside a Javascript file
+  - Under the hood it is transformed regular javascript useing cimolies like Babel of Typescript
+  - browser unabel to read jsx
+
+  #### The Rules of JSX
+  1.Return a single root element>use div or fragment
+  2. closed all the tag
+  3. Must use camelcase
+    -class => className
+    - onclick =>onClick
+  4.Javascript in JSX with Curly Braces
+   - if want to add something dynamically use {}
+   5.You can pass object in JSX useing Double curlies
+   6.When you need an inline style,You pass an object to the style attribute
+
+   JSx is javascript ar modde HTML write ar akta way

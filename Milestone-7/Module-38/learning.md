@@ -104,4 +104,16 @@
   - unchangeble-props
 
   #### 38.6 Read only props two way of conditional rendering
-  - 
+
+  #### 38.7 Six ways to do conditional rendering : if, ternary,and or
+  - Why Conditional rendering is necessary for react applications?
+   - Improve user Expriences
+   - Improved performance
+   - Simplified code
+   - flexibility
+
+  - In React You can conditionally render JSX useing javascript syntax like
+  - if statements
+  - && ||
+  - ternary operator
+  

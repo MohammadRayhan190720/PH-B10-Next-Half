@@ -78,7 +78,7 @@
 
   ##### what is props?
   - react components use props to communicate with each other.
-  - Every parent component can pass some information to its chils components by give them props
+  - Every parent component can pass some information to its childs components by give them props
   - you can pass value through props,including objects , arrays and functions
   - props are unidirectional
   --different values of props
@@ -102,3 +102,6 @@
   - you can specify a default value like size = 100 ,which is uysed for missing and undefined props
   - props are read only 
   - unchangeble-props
+
+  #### 38.6 Read only props two way of conditional rendering
+  - 

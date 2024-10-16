@@ -23,4 +23,25 @@
 - angular is a two way data binding
 
 #### 38.2- What is Components,Conponent Types,Build Your frist components
-- 
+- What is components?
+ - Building blocks of the user interfaces
+ - Each component exists in the same space but work independently
+ - splits UI into independent and reusable pieces
+ - all of the componets are being merged in a parent component(the final UI)
+ - accepts input called props(optional) and returns react elements
+
+ --4 ways to define components
+ - similar to look ,different to use
+ - container components
+ - No common pattern ,But breakdown for working purpose
+ - stand alone componets
+
+ --so ,What is component?
+ - component are the foundation upon which you build user interfaces
+ - In react app ,every piece of UI is a component
+ - A react component is a javascript that you can sprinkle with markup except
+  1. Their names alwasy begin with a capital letter
+  2. they returns JSX markup
+  -- How to build a component?
+  - Export the component
+  - Define the function

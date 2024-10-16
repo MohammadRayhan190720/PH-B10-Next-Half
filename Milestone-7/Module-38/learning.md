@@ -67,3 +67,38 @@
    6.When you need an inline style,You pass an object to the style attribute
 
    JSx is javascript ar modde HTML write ar akta way
+
+  #### 38.4-Explore JSX and Props Basics
+  - 3 ways to add style in JSX
+
+  #### 38.5 - Props types and How to pass/read a props
+  - props hisabe kno data pataile seta object hisabe jabe
+  - object destructring kore usse krte hbe
+  - i can set a deafult value
+
+  ##### what is props?
+  - react components use props to communicate with each other.
+  - Every parent component can pass some information to its chils components by give them props
+  - you can pass value through props,including objects , arrays and functions
+  - props are unidirectional
+  --different values of props
+  1.string
+  <props = "My string value"/>
+  2.template literals with variables
+  <prop = `{My string value is ${variable}`}/>
+  3.number literals
+  <prop = {42}/>
+  4.boolean literals
+  <prop = {true}/>
+  5.object literals
+  <prop = {{property: "value"}}>
+  6.array literals
+  <prop = {[property: "value"]}>
+  7.JSX
+  <prop = <Friends who = ''/>/>
+
+  - To pass props ,and then to the JSX,Just like you would with HTML attributes
+  - To read props , use function Avatar({person,size}) destructuring syntax
+  - you can specify a default value like size = 100 ,which is uysed for missing and undefined props
+  - props are read only 
+  - unchangeble-props

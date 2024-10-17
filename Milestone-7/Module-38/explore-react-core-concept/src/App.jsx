@@ -1,18 +1,38 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Todo from './Todo'
+import Actor from './Actor'
+import Singer from './Singer'
 
 
 function App() {
+  const actors = ["Sakib" , "Tamim" , "Bijoy" , "mash" , "Riyad"];
+  
+  const singers =[
+    {id: 1 , name : "Atif islam" , age : 35},
+    {id: 2 , name : "Balam" , age : 40},
+    {id: 3 , name : "Hasab" , age : 42},
+    {id: 4 , name : "Asif" , age : 32},
+    {id: 5 , name : "Hidoy" , age : 28}
+  ]
   
   return (
     <>
       <h1>Vite + React</h1>
-      <Todo task = " learn React " isDone ={true}></Todo>
+
+      {
+        singers.map(singer=> <Singer singer = {singer} ></Singer>)
+      }
+      <Actor name={"Bappa Raz"}></Actor>
+      {
+        actors.map(actor => <Actor name = {actor}></Actor>)
+      }
+
+      {/* <Todo task = " learn React " isDone ={true}></Todo>
       <Todo task = " Core concept " isDone = {false}></Todo>
-      <Todo task = " Try JSX " isDone ={false}></Todo>
+      <Todo task = " Try JSX " isDone ={false}></Todo> */}
       {/* <Device name ="Laptop" price="55"></Device>
       <Device name ="Watch" price="3"></Device>
       <Device name ="Iphone" price="555"></Device>

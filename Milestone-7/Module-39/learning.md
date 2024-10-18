@@ -55,3 +55,11 @@
    3. Toggle flages(true/false)
    4.Counter
    5.Store API data in state
+
+   -- different types of hooks
+   1. state hooks
+   2. context hooks
+   3. ref hooks
+   4. Effect hooks
+   5. performance hooks
+   6. others

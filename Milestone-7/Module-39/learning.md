@@ -25,4 +25,7 @@
   - Explicity calling an event handler prop form a child handler is a good alternative of propagation
 
 #### 39.3- A simple imtroduction to state change in React
+- state- kno kicu change hole hte pare amn bujate state use kora hoy
+
+#### 39.4 Understand the concept of UseState and react hooks
 - 

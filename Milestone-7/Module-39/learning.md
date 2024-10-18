@@ -28,4 +28,7 @@
 - state- kno kicu change hole hte pare amn bujate state use kora hoy
 
 #### 39.4 Understand the concept of UseState and react hooks
-- 
+-- What exactly is state?
+- component often need to change whats on the scree as a result an interaction
+- Typeing into the form should update the input field ,clicking next on an image carousel should change which image is displayed chickinf "buy" should put a product shopping cart.
+- components need to remember things : the cirrent input value , the current image ,the shoping cart.In react this of component -specific memory is called state.

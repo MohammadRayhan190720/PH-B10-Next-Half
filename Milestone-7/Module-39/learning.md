@@ -38,5 +38,20 @@
  1. A state variable to retain the data between renders.
  2. A state setter function to update the variable and teigger React to render the component again
  
- ```const [count , setCount] = useState(0)
+ ```
+  const [count , setCount] = useState(0)
         (current state , function to update state)
+  ```
+
+  -- Why UseState() is needed?
+  - to update a component with new data,two things need to happen
+   - ratain the data between renders
+   - Trigger React to render the component with new data (re-rendering)
+   - varibales do not preserve data between renders and cannot trigger React to render .hence useState is needed as if preserves data since it is a memory as well trigger React to render with the help of setter function.
+
+   -- 5 use cases of useState
+   1.state management
+   2.conditional rendering
+   3. Toggle flages(true/false)
+   4.Counter
+   5.Store API data in state

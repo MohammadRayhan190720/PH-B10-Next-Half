@@ -4,4 +4,6 @@
  - we learned form previous module
   - component (it is a function)
   - JSX(Javascript ar modde HTML write ar akta system)
-  - 
+  - props(akta component theke ar akta componet a data patano)
+  - conditional rendering
+  - array of object => map

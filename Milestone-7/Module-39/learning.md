@@ -23,3 +23,6 @@
   - You can declare an event handler in a parent and pass it as a prop to a child
   - you can define your own event handler props with a application -specific names
   - Explicity calling an event handler prop form a child handler is a good alternative of propagation
+
+#### 39.3- A simple imtroduction to state change in React
+- 

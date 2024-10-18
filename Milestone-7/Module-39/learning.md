@@ -32,3 +32,11 @@
 - component often need to change whats on the scree as a result an interaction
 - Typeing into the form should update the input field ,clicking next on an image carousel should change which image is displayed chickinf "buy" should put a product shopping cart.
 - components need to remember things : the cirrent input value , the current image ,the shoping cart.In react this of component -specific memory is called state.
+
+--How to write a useState Hook?
+- The useState Hook provides those two things
+ 1. A state variable to retain the data between renders.
+ 2. A state setter function to update the variable and teigger React to render the component again
+ 
+ ```const [count , setCount] = useState(0)
+        (current state , function to update state)

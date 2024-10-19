@@ -63,3 +63,41 @@
    4. Effect hooks
    5. performance hooks
    6. others
+
+#### 39.5- UnderStand the concept of useEffect
+- WHat are Effects?
+ - There are two type of logic inside React Component
+  - Rendering code : Lives at he top label of your component.This is where you take hhe props and state , transform them,and return thr JSX you want to see on screen
+  - Event Handlers : An Event Handler might update an input field,submit an HTTP post request to buy a product,or navigate the user to another screen.
+  Event handlers contain side effect (they change the programs state)caused by a specific user action (for example , a button click or typing)
+
+  --What are effects ?
+   -consider a Chatroom component that must connect to the chat server whenever its visible on the screen
+   1.sending message in the chat is an event because it is directly caused by the user clickung a specific button
+   2.However,setting up a server connection is an Effect because it shouls happer no matter which interaction caused the componet tp appear
+
+   --What are side effects in react?
+   - not predictable
+   - Actions which are performed with the outside world
+   -A side effect is performed when we need to reach outside the scope of our current react component to do something
+   - React component rendering and side effect logic are independent
+
+   --some common side effects-
+   - Makeing a request to an API for data form a backend server
+   - To interact with browser APIs(that is ,to use document or window directly)/Manipulating DOM drictly
+   - Useing unpredictable timing function like setTimeout() or setInterval
+   - Reading data form local stroage
+
+   --What is useEffect?
+   - useEffect exista=>
+    - To synchronize a component with an external system
+    - To provide a way to handle perforing the side effects
+    - Doesent affect he rendering or performance of the componet this its in
+    - Performs asynchronous tasks
+    ```
+       useEffect = (()=>{...},[depenencies])
+    ```
+
+    --How to right an Effect
+     - Specify the effect dependencies.Most effects should only re-ren when needed rather than after every rnader.For Example,a fade-in-animation shild only trigger when a component appears
+     - add cleanup if needed.Some Effects need to speaify how to stop ,undo ,clean up whatever thr were doing,For example,"connect needs "disconnect"

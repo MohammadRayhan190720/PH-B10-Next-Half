@@ -114,10 +114,16 @@
     2.Rendering the component(preparing the order in the kitchen)
     3.Commiting to the DOM(placing the order on the table)
 
-#### 39.6- (recap) Core concept components, state ,useEffect
+#### 39.7- (recap) Core concept components, state ,useEffect
 - components
 - JSX
 - Props
 - event handler
 - state
 - load data
+
+#### 39.8-Thinking in react way
+- when you build a user interface with react=>
+ - step-1=>Break it apart into pieces called components
+ - step-2=> Describe the different visual states for each of the components
+ - step3=> Connect the components together so that the data flows throught them

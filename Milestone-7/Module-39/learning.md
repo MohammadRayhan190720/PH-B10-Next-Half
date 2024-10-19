@@ -101,3 +101,23 @@
     --How to right an Effect
      - Specify the effect dependencies.Most effects should only re-ren when needed rather than after every rnader.For Example,a fade-in-animation shild only trigger when a component appears
      - add cleanup if needed.Some Effects need to speaify how to stop ,undo ,clean up whatever thr were doing,For example,"connect needs "disconnect"
+
+   #### 39.6- (recap) Load Dynamic Data ,API call UseEffect Integrate state
+   
+   
+   ##### Trigger ,render and commit in React
+   - What does Render means?
+    - Before your components are displayed on screen ,they must be rendered by React
+    - Rendering means that reaxt is calling your component,Which is a function
+
+    1.Triggering a render(delivering the guests order to kitchen)
+    2.Rendering the component(preparing the order in the kitchen)
+    3.Commiting to the DOM(placing the order on the table)
+
+#### 39.6- (recap) Core concept components, state ,useEffect
+- components
+- JSX
+- Props
+- event handler
+- state
+- load data

@@ -31,4 +31,7 @@ export default function Friends(){
  * step by step
  * 1.state for hold data
  * 2.use effect with dependencies array
+ * 3.Use fatch to load data
+ * 4.set loaded data to the state
+ * 5.Display data on the component
  */

@@ -20,3 +20,10 @@
 
 #### 40.3- Creat and load FakeData , Chatgpt json , online API
 - 
+
+#### 40.4- Load bottle data and show in grid lauout
+
+#### 40.5- creat shoping cart  to handle with parameters
+- 
+#### 40.6-Intro to local stroage to store data just one time
+- 

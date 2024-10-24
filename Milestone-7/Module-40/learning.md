@@ -24,4 +24,3 @@
 
 #### 40.8 - Props drilling , pass prop in multi level
 - props drilling => context API [props drilling ke handle korar systematic way]
--

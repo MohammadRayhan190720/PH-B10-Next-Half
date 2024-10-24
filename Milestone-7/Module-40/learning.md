@@ -18,3 +18,7 @@
 - 
 #### 40.5 - Conditional css and conditional rendering
 - 
+#### 40.6 - Updateing state in arrays and pass paremeter
+-
+#### 40.7 - Lift up the state recap for visited flags
+-

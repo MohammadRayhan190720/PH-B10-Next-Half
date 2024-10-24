@@ -10,3 +10,6 @@
 - useEffect => Asynchronous dill korar system.ar modde akta hlo data load kora
 
 #### 40.2 - Displays countries in a simple way , Folder structure
+
+#### 40.2 - Recap Folder Structure and Turn of Props types eslint warning
+- 

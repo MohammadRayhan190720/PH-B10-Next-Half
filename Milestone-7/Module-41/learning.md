@@ -17,3 +17,6 @@
     - Renaming Imports/Exports: Use as to rename during export or import.
    - Dynamic Import (import()): Load modules on demand for performance optimization.
     e-exporting: You can re-export imports from one module in another module for easier aggregation.
+
+#### 40.3- Creat and load FakeData , Chatgpt json , online API
+- 

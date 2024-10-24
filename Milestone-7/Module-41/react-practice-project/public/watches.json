@@ -1,0 +1,32 @@
+[
+  {
+    "id": 101,
+    "name": "Rolex Submariner",
+    "price": 8500,
+    "brand": "Rolex"
+  },
+  {
+    "id": 102,
+    "name": "Omega Speedmaster",
+    "price": 5200,
+    "brand": "Omega"
+  },
+  {
+    "id": 103,
+    "name": "Tag Heuer Carrera",
+    "price": 3600,
+    "brand": "Tag Heuer"
+  },
+  {
+    "id": 104,
+    "name": "Seiko Prospex Diver",
+    "price": 900,
+    "brand": "Seiko"
+  },
+  {
+    "id": 105,
+    "name": "Apple Watch Series 9",
+    "price": 400,
+    "brand": "Apple"
+  }
+]

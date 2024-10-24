@@ -11,5 +11,10 @@
 
 #### 40.2 - Displays countries in a simple way , Folder structure
 
-#### 40.2 - Recap Folder Structure and Turn of Props types eslint warning
+#### 40.3 - Recap Folder Structure and Turn of Props types eslint warning
+- 
+
+#### 40.4 - Toggle state and based on click and conditional rendering
+- 
+#### 40.5 - Conditional css and conditional rendering
 - 

@@ -27,3 +27,9 @@
 - 
 #### 40.6-Intro to local stroage to store data just one time
 - 
+#### 40.7-UseEffect Defendency and local Stroage id
+- 
+#### 40.8-Display saved cart form local stroage
+- 
+#### 40.-PropsTypes warning and Remove Form UI and LS
+- 

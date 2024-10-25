@@ -1,8 +1,9 @@
 
 import PropTypes from "prop-types"; 
+import { FaRegBookmark } from "react-icons/fa";
 
-const Blog = ({blog}) => {
-  console.log(blog)
+const Blog = ({ blog, handleAddToBookMarks }) => {
+  console.log(blog);
 
   const {
     cover,
@@ -26,19 +27,24 @@ const Blog = ({blog}) => {
             <p className="text-gray-500">{posted_date}</p>
           </div>
         </div>
-        <div>
+        <div className="flex gap-3">
           <p>{reading_time} min read</p>
+          <button onClick={()=>handleAddToBookMarks(blog)}>
+            <FaRegBookmark />
+          </button>
         </div>
       </div>
       <h3 className="text-4xl lg:text-5xl font-bold mt-5">{title}</h3>
       <div className="mt-7 text-gray-500 text-lg">
-        {hashtags.map((hash,indx) => (
+        {hashtags.map((hash, indx) => (
           <span key={indx}>
             <a href="#"> #{hash}</a>
           </span>
         ))}
       </div>
-      <button className="underline text-red-500 hover:text-blue-200 mt-4">Mark As Read</button>
+      <button className="underline text-red-500 hover:text-blue-200 mt-4">
+        Mark As Read
+      </button>
     </div>
   );
 };

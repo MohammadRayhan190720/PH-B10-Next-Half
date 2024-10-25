@@ -2,26 +2,26 @@ import { useEffect, useState } from "react";
 import Blog from "../Blog/Blog";
 
 
-const Blogs = () => {
+const Blogs = ({ handleAddToBookMarks }) => {
+  const [blogs, setBlogs] = useState([]);
 
-const[blogs,setBlogs] = useState([])
-
-  useEffect(() =>{
-    fetch('blogs.json')
-    .then(res =>res.json())
-    .then(data => setBlogs(data))
-
-  },[])
-
+  useEffect(() => {
+    fetch("blogs.json")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data));
+  }, []);
 
   return (
     <div className="md:w-2/3">
       <h3>Blogs : {blogs.length} </h3>
 
-      {
-        blogs.map((blog) => <Blog key={blog.id} blog={blog}></Blog>)
-      }
-      
+      {blogs.map((blog) => (
+        <Blog
+          key={blog.id}
+          blog={blog}
+          handleAddToBookMarks={handleAddToBookMarks}
+        ></Blog>
+      ))}
     </div>
   );
 };

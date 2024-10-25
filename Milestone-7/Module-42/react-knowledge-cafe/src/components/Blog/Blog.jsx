@@ -4,7 +4,15 @@ import PropTypes from "prop-types";
 const Blog = ({blog}) => {
   console.log(blog)
 
-  const {cover,title,author,author_img,hasgtags,posted_date,reading_time} = blog;
+  const {
+    cover,
+    title,
+    author,
+    author_img,
+    hashtags,
+    posted_date,
+    reading_time,
+  } = blog;
 
   return (
     <div className="mt-7">
@@ -23,6 +31,14 @@ const Blog = ({blog}) => {
         </div>
       </div>
       <h3 className="text-4xl lg:text-5xl font-bold mt-5">{title}</h3>
+      <div className="mt-7 text-gray-500 text-lg">
+        {hashtags.map((hash,indx) => (
+          <span key={indx}>
+            <a href="#"> #{hash}</a>
+          </span>
+        ))}
+      </div>
+      <button className="underline text-red-500 hover:text-blue-200 mt-4">Mark As Read</button>
     </div>
   );
 };

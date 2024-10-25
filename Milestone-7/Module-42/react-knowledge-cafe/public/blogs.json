@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "cover": "https://i.ibb.co.com/GPTvh34/1.jpg",
+    "title": "The Future of AI: Opportunities and Challenges",
+    "author": "John Doe",
+    "author_img": "https://i.ibb.co.com/XWCYJR1/boy1.png",
+    "posted_date": "2024-10-25",
+    "reading_time": 5,
+    "hashtags": ["AI", "Technology", "Future", "Innovation"]
+  },
+  {
+    "id": 2,
+    "cover": "https://i.ibb.co.com/3rY12xg/2.png",
+    "title": "Exploring Quantum Computing: The Next Frontier",
+    "author": "Sarah Lee",
+    "author_img": "https://i.ibb.co.com/sqkfZzk/boy2.jpg",
+    "posted_date": "2024-10-23",
+    "reading_time": 7,
+    "hashtags": ["Quantum Computing", "Tech Trends", "Computing", "Innovation"]
+  },
+  {
+    "id": 3,
+    "cover": "https://i.ibb.co.com/3BktBf7/3.png",
+    "title": "5G and Beyond: How Connectivity is Shaping the World",
+    "author": "David Kim",
+    "author_img": "https://i.ibb.co.com/yh5mDs1/girl1.jpg",
+    "posted_date": "2024-10-20",
+    "reading_time": 6,
+    "hashtags": ["5G", "Connectivity", "Internet", "Tech"]
+  },
+  {
+    "id": 4,
+    "cover": "https://i.ibb.co.com/vV7M0P4/4.jpg",
+    "title": "Blockchain Technology: Revolutionizing Data Security",
+    "author": "Emily Brown",
+    "author_img": "https://i.ibb.co.com/HBGqPHh/girl2.jpg",
+    "posted_date": "2024-10-18",
+    "reading_time": 8,
+    "hashtags": ["Blockchain", "Data Security", "Cryptography", "Innovation"]
+  },
+  {
+    "id": 5,
+    "cover": "https://i.ibb.co.com/GPTvh34/1.jpg",
+    "title": "The Rise of Renewable Tech: A Greener Future",
+    "author": "Michael Chen",
+    "author_img": "https://i.ibb.co.com/sqkfZzk/boy2.jpg",
+    "posted_date": "2024-10-15",
+    "reading_time": 5,
+    "hashtags": [
+      "Renewable Energy",
+      "Green Tech",
+      "Environment",
+      "Sustainability"
+    ]
+  }
+]
+
+

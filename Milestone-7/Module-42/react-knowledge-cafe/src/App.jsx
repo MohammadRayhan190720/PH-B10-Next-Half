@@ -1,16 +1,20 @@
-
+import Header from './components/Header/Header'
+import Blogs from './components/Blogs/Blogs'
 import './App.css'
+import BookMarks from './components/BookMarks/BookMarks';
 
 function App() {
   
 
   return (
     <>
-     
-      <h1 className='text-5xl text-center bg-pink-300 p-5'>Knowledge Cafe </h1>
-      
+      <Header></Header>
+      <div className='md:flex'>
+        <Blogs></Blogs>
+        <BookMarks></BookMarks>
+      </div>
     </>
-  )
+  );
 }
 
 export default App

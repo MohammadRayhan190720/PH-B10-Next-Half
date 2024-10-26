@@ -13,7 +13,9 @@ const Blogs = ({ handleAddToBookMarks, handleReadingTime }) => {
 
   return (
     <div className="md:w-2/3">
-      <h3>Blogs : {blogs.length} </h3>
+      <h3 className="text-3xl mt-3 text-lime-500 font-bold  text-center">
+        Blogs : {blogs.length}
+      </h3>
 
       {blogs.map((blog) => (
         <Blog

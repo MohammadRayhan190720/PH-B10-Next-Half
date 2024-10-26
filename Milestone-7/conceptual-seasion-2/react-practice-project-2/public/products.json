@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "name": "Xenon Pro Tablet",
+    "image": "https://i.ibb.co.com/cXZwSMB/isaac-quesada-z5k5v-WGh7-Nk-unsplash.jpg",
+    "description": "A powerful tablet with 10-inch display, ideal for both entertainment and productivity.",
+    "category": "Tablets",
+    "price": 299.99,
+    "isFeatured": true
+  },
+  {
+    "id": 2,
+    "name": "OmegaPhone Z3",
+    "image": "https://i.ibb.co.com/kQXn5Xf/farzad-p-x-Sl33-Wxyc-unsplash.jpg",
+    "description": "Sleek and powerful smartphone with a 6.5-inch display and 5G connectivity.",
+    "category": "Smartphones",
+    "price": 599.99,
+    "isFeatured": false
+  },
+  {
+    "id": 3,
+    "name": "Bolt Wireless Earbuds",
+    "image": "https://i.ibb.co.com/jMh7WkZ/kiran-ck-RZmi-DOpv1l-M-unsplash-1.jpg",
+    "description": "Compact and comfortable earbuds with noise cancellation and long battery life.",
+    "category": "Audio",
+    "price": 89.99,
+    "isFeatured": true
+  },
+  {
+    "id": 4,
+    "name": "EcoSmart Watch X2",
+    "image": "https://i.ibb.co.com/sHRvpHs/hector-achautla-3v-Xt-QZt-NI2-Y-unsplash.jpg",
+    "description": "Smartwatch with health tracking, water resistance, and customizable faces.",
+    "category": "Wearables",
+    "price": 199.99,
+    "isFeatured": false
+  },
+  {
+    "id": 5,
+    "name": "GigaDrive SSD",
+    "image": "https://i.ibb.co.com/jMh7WkZ/kiran-ck-RZmi-DOpv1l-M-unsplash-1.jpg",
+    "description": "Fast external SSD with 1TB of storage, perfect for on-the-go data storage.",
+    "category": "Storage",
+    "price": 149.99,
+    "isFeatured": true
+  },
+  {
+    "id": 6,
+    "name": "UltraSlim Laptop 14",
+    "image": "https://i.ibb.co.com/XCJ1kcz/luis-felipe-lins-I4-X-NSua-M5c-unsplash.jpg",
+    "description": "Lightweight and powerful laptop with a 14-inch display, ideal for productivity.",
+    "category": "Laptops",
+    "price": 899.99,
+    "isFeatured": false
+  },
+  {
+    "id": 7,
+    "name": "HomePod Mini Speaker",
+    "image": "https://i.ibb.co.com/vdnYdqP/lee-campbell-GI6-L2pki-Zg-Q-unsplash.jpg",
+    "description": "Compact smart speaker with impressive sound and built-in voice assistant.",
+    "category": "Smart Home",
+    "price": 49.99,
+    "isFeatured": true
+  },
+  {
+    "id": 8,
+    "name": "ProCam DSLR 5000",
+    "image": "https://i.ibb.co.com/gVCLQrG/luis-felipe-lins-M19-H-I13i-Wo-unsplash.jpg",
+    "description": "High-resolution DSLR camera with advanced features for photography enthusiasts.",
+    "category": "Cameras",
+    "price": 1299.99,
+    "isFeatured": false
+  },
+  {
+    "id": 9,
+    "name": "Vortex Gaming Console",
+    "image": "https://i.ibb.co.com/M8mgcSz/nathana-reboucas-GUn-Ng-IYz-DVY-unsplash.jpg",
+    "description": "Next-gen gaming console with immersive graphics and a vast game library.",
+    "category": "Gaming",
+    "price": 499.99,
+    "isFeatured": true
+  },
+  {
+    "id": 10,
+    "name": "PureView 4K Monitor",
+    "image": "https://i.ibb.co.com/hD73XfD/alienware-Hpaq-k-Bc-YHk-unsplash.jpg",
+    "description": "Crystal-clear 4K monitor with ultra-thin bezels for an immersive viewing experience.",
+    "category": "Monitors",
+    "price": 329.99,
+    "isFeatured": false
+  }
+]
+

@@ -1,0 +1,59 @@
+{
+  "membershipOptions": [
+    {
+      "id": "basic",
+      "title": "Basic Plan",
+      "price": 29.99,
+      "duration": "per month",
+      "features": [
+        "Access to gym equipment",
+        "Locker room access",
+        "Free parking"
+      ]
+    },
+    {
+      "id": "standard",
+      "title": "Standard Plan",
+      "price": 49.99,
+      "duration": "per month",
+      "features": [
+        "Access to gym equipment",
+        "Locker room access",
+        "Free parking",
+        "Access to group classes",
+        "One free personal training session"
+      ]
+    },
+    {
+      "id": "premium",
+      "title": "Premium Plan",
+      "price": 79.99,
+      "duration": "per month",
+      "features": [
+        "Access to gym equipment",
+        "Locker room access",
+        "Free parking",
+        "Access to all classes",
+        "Weekly personal training sessions",
+        "Access to spa and sauna",
+        "Diet consultation"
+      ]
+    },
+    {
+      "id": "annual",
+      "title": "Annual Membership",
+      "price": 699.99,
+      "duration": "per year",
+      "features": [
+        "Access to gym equipment",
+        "Locker room access",
+        "Free parking",
+        "Access to all classes",
+        "Monthly personal training sessions",
+        "Access to spa and sauna",
+        "Diet consultation",
+        "Free guest pass once per month"
+      ]
+    }
+  ]
+}

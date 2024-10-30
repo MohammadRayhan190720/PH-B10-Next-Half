@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Link from "../Link/Link";
 import { AiOutlineMenuFold } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
+
 
 
 
@@ -43,14 +45,17 @@ const Navbar = () => {
       <div
         className="md:hidden"
         onClick={() => {
-          setOpen(true);
+          setOpen(!open);
         }}
       >
-        {open === true ? "Open" : "Close"}
-        <AiOutlineMenuFold className="text-2xl " />
+        {open === true ? (
+          <IoMdClose className="text-2xl" />
+        ) : (
+          <AiOutlineMenuFold className="text-2xl " />
+        )}
       </div>
 
-      <ul className="md: flex gap-5">
+      <ul className="md:flex gap-5">
         {routes.map((route) => (
           <Link key={route.title} route={route}></Link>
         ))}

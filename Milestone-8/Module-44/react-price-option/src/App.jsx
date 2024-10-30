@@ -1,12 +1,15 @@
 
 import './App.css'
+import DaisyNav from './component/DaisyNav/DaisyNav';
+import Navbar from './component/Navbar/Navbar';
 
 function App() {
  
 
   return (
     <>
-      <h1 className="text-5xl bg-green-600 text-center">Vite + React</h1>
+    <DaisyNav></DaisyNav>
+    <Navbar></Navbar>
 
     </>
   );

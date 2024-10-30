@@ -58,7 +58,7 @@ const Navbar = () => {
       <ul className={`md:flex gap-5 duration-1000
       ${open ? "top-24" : "-top-60"}
        
-         absolute`}>
+         absolute md:static`}>
 
         {routes.map((route) => (
           <Link key={route.title} route={route}></Link>

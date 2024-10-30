@@ -1,4 +1,5 @@
 {
   "eslint.enable": false,
-  "eslint.nodeEnv": ""
+  "eslint.nodeEnv": "",
+  "eslint.format.enable": true
 }

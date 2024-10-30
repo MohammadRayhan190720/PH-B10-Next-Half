@@ -11,7 +11,7 @@ const PriceOptions = () => {
       .then((data) => setPriceData(data.membershipOptions));
   },[]);
   return (
-    <div className="md:flex gap-5">
+    <div className="md:flex gap-5 mt-5">
       {
         priceData.map(prices =><PriceOption key={prices.id} prices ={prices}></PriceOption>)
       }

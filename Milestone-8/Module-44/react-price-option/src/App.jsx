@@ -4,6 +4,8 @@ import Chart from './component/Chart/Chart';
 import DaisyNav from './component/DaisyNav/DaisyNav';
 import Navbar from './component/Navbar/Navbar';
 import PriceOptions from './component/PriceOptions/PriceOptions';
+import BarChart from './component/BarChart/BarChart';
+import ChartBar from './component/ChartBar/ChartBar';
 
 function App() {
  
@@ -16,6 +18,10 @@ function App() {
     <PriceOptions></PriceOptions>
 
     <Chart></Chart>
+
+    <BarChart></BarChart>
+
+    <ChartBar></ChartBar>
 
     </>
   );

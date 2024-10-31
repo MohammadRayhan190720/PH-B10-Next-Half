@@ -30,7 +30,7 @@ const Slider = () => {
           <img
             src="
 
-https://i.ibb.co.com/gyLj0LX/farzad-p-x-Sl33-Wxyc-unsplash.jpg"
+            https://i.ibb.co.com/gyLj0LX/farzad-p-x-Sl33-Wxyc-unsplash.jpg"
             alt=""
           />
         </div>

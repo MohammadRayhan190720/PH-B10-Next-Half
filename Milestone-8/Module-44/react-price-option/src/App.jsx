@@ -6,6 +6,8 @@ import Navbar from './component/Navbar/Navbar';
 import PriceOptions from './component/PriceOptions/PriceOptions';
 import BarChart from './component/BarChart/BarChart';
 import ChartBar from './component/ChartBar/ChartBar';
+import Phones from './component/Phones/Phones';
+import Slider from './component/Slider/Slider';
 
 function App() {
  
@@ -22,6 +24,10 @@ function App() {
     <BarChart></BarChart>
 
     <ChartBar></ChartBar>
+
+    <Phones></Phones>
+
+    <Slider></Slider>
 
     </>
   );

@@ -5,4 +5,7 @@
 - explore react router documentation
 
 #### 45.2- Explain React router concepts
-- 
+- route declare korar jonno 3 ta kaj krte hbe =>
+ 1. Make a component
+ 2. add path and element is Main.jsx componet
+ 3. Link to with Home Componets

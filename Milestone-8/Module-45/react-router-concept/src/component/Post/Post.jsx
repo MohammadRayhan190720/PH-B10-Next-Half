@@ -11,7 +11,7 @@ const Post = ({post}) => {
       <h2>Body: {body}</h2>
       <p>UserId : {userId}</p>
 
-      <Link to={`/post/${post.id}`}>View Details</Link>
+      <Link to={`/post/${id}`}>View Details</Link>
       
     </div>
   );

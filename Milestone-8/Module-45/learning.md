@@ -9,3 +9,7 @@
  1. Make a component
  2. add path and element is Main.jsx componet
  3. Link to with Home Componets
+
+ #### When I use loader and userLoderData instead of userffect in useing react router dom...
+ - useEffect => compont a click hower por data load kre neya ase
+ - userLoaderData => Agei Data load kora rakhe.

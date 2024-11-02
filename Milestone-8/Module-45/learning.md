@@ -13,3 +13,5 @@
  #### When I use loader and userLoderData instead of userffect in useing react router dom...
  - useEffect => compont a click hower por data load kre neya ase
  - userLoaderData => Agei Data load kora rakhe.
+ - navigate =>useNavigate()=== buttonClick Handler
+ - navigation => useNavigation()=== loading spinner

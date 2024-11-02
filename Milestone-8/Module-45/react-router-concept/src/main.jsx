@@ -12,10 +12,12 @@ import Posts from './component/Posts/Posts.jsx';
 import PostDetails from './component/PostDetails/PostDetails.jsx';
 import Todos from './component/Todos/Todos.jsx';
 import TodoDetails from './component/TodoDetails/TodoDetails.jsx';
+import ErrorPage from './component/ErrorPage/ErrorPage.jsx';
 
 const router = createBrowserRouter([{
     path : "/",
     element : <Home></Home>,
+    errorElement: <ErrorPage></ErrorPage>,
     children : [
       {
         path : '/about',

@@ -1,12 +1,16 @@
 
+import { NavLink } from "react-router-dom";
+
+
 const NavBar = () => {
 
 
   const links = (
-    <>
-      <li><a>Home</a></li>
-      <li><a>DashBoard</a></li>
-    </>
+    <div className="flex justify-center  gap-8">
+      <NavLink>Home</NavLink>
+      <NavLink>Listed Books</NavLink>
+      <NavLink>Pages to Read</NavLink>
+    </div>
   );
 
 
@@ -38,7 +42,7 @@ const NavBar = () => {
             {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="text-black text-3xl font-bold">Book Vibe</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -46,7 +50,8 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn bg-green-500 text-white">Sing In</a>
+          <a className="btn bg-green-300 text-white">Sing Up</a>
         </div>
       </div>
     </div>

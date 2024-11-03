@@ -37,6 +37,9 @@ const BookDetails = () => {
         <p>Rating : {rating}</p>
        </div>
 
+       <button className="px-5 py-3 border border-green-600  mr-6">Mark As Read</button>
+       <button className="px-5 py-3 bg-green-600 text-white">Add To WishList</button>
+
       </div>
     </div>
   );

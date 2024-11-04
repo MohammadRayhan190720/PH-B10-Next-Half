@@ -1,5 +1,5 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import { addToStoredReadList } from "../../Utilities/addToDb";
+import { addToStoredReadList, addToWishList } from "../../Utilities/addToDb";
 
 const BookDetails = () => {
 
@@ -16,6 +16,10 @@ const BookDetails = () => {
     addToStoredReadList(id)
 
   }
+
+  const handleToAddWishList = (id) =>{
+    addToWishList(id)
+  }
   
 
   return (
@@ -31,11 +35,11 @@ const BookDetails = () => {
 
         <p>review : {review}</p>
 
-       <p className="border-b border-dashed flex gap-5 ">
+       <div className="border-b border-dashed flex gap-5 ">
         {
-          tags.map(tag => <p className="bg-green-100 px-5 py-3 rounded-xl pb-4">{tag}</p>)
+          tags.map((tag,index) => <p key={index} className="bg-green-100 px-5 py-3 rounded-xl pb-4">{tag}</p>)
         }
-       </p>
+       </div>
 
        <div className="text-2xl font-semibold space-y-2">
         <p>Number of Pages : {totalPages}</p>
@@ -45,7 +49,7 @@ const BookDetails = () => {
        </div>
 
        <button onClick={()=>{handleToMarkRead(bookId)}} className="px-5 py-3 border border-green-600  mr-6">Mark As Read</button>
-       <button className="px-5 py-3 bg-green-600 text-white">Add To WishList</button>
+       <button onClick={()=>{handleToAddWishList(bookId)}} className="px-5 py-3 bg-green-600 text-white">Add To WishList</button>
 
       </div>
     </div>

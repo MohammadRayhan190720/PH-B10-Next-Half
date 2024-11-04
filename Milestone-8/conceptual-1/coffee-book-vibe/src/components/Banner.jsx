@@ -1,17 +1,12 @@
-import BannerImage from '../assets/images/banner.jpg'
+import bgImage from '../assets/banner.jpg'
 
 const Banner = () => {
   return (
-    <div
-      className="hero min-h-screen"
-      style={{
-        backgroundImage:
-          {BannerImage},
-      }}
-    >
-      <div className="hero-overlay bg-opacity-60"></div>
-      
-    </div>
+     <div className='min-h-[500px] rounded-xl mt-10' style={{ backgroundImage: `url(${bgImage})`}} >
+
+     </div>//
+
+
   );
 };
 

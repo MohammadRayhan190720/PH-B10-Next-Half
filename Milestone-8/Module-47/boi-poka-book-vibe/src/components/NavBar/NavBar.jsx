@@ -7,8 +7,8 @@ const NavBar = () => {
 
   const links = (
     <div className="flex justify-center  gap-8">
-      <NavLink>Home</NavLink>
-      <NavLink>Listed Books</NavLink>
+      <NavLink to='/'>Home</NavLink>
+      <NavLink to ='/listedBooks'>Listed Books</NavLink>
       <NavLink>Pages to Read</NavLink>
     </div>
   );

@@ -45,4 +45,4 @@ const addToWishList = (id) =>{
   }
 }
 
-export {addToStoredReadList,addToWishList};
+export {addToStoredReadList,addToWishList,getstoredReadList,getstoredWishList};

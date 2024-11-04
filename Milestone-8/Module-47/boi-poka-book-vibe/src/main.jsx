@@ -5,9 +5,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from './components/Root/Root.jsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import Home from './components/Home/Home.jsx';
-import DashBoard from './components/DashBoard/DashBoard.jsx';
 import BookDetails from './components/BookDetails/BookDetails.jsx';
 import ListedBooks from './components/ListedBooks/ListedBooks.jsx';
+import PageRead from './components/PageRead/PageRead.jsx';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const router = createBrowserRouter([
@@ -31,13 +33,18 @@ const router = createBrowserRouter([
         loader : ()=> fetch('/booksData.json')
 
       },
+      {
+        path : '/pagesRead',
+        element: <PageRead></PageRead>
+      }
     ]
   }
 
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-)
+    <ToastContainer />
+  </StrictMode>
+);

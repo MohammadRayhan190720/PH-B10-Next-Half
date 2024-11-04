@@ -6,10 +6,10 @@ const NavBar = () => {
 
 
   const links = (
-    <div className="flex justify-center  gap-8">
+    <div className="flex justify-center items-center  gap-8 ">
       <NavLink to='/'>Home</NavLink>
       <NavLink to ='/listedBooks'>Listed Books</NavLink>
-      <NavLink>Pages to Read</NavLink>
+      <NavLink to = '/pagesRead'>Pages to Read</NavLink>
     </div>
   );
 

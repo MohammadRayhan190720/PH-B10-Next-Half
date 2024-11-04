@@ -11,6 +11,8 @@ const ListedBooks = () => {
 
   const [wishList,setWishList] = useState([])
 
+  const [sort,setSort] = useState([])
+
   const allBooksData = useLoaderData();
 
   //add to read list
@@ -35,8 +37,49 @@ const ListedBooks = () => {
   },[])
 
 
+  const handleSort = sortType =>{
+    setSort(sortType)
+
+    if (sortType === 'Number of Pages'){
+      const sortByPrice = [...readList].sort((a,b) => a.totalPages - b.totalPages);
+      setReadList(sortByPrice);
+    }
+
+    if(sortType === 'Ratings'){
+      const sortByRating = [...readList].sort((a,b) => a.rating - b.rating);
+      setReadList(sortByRating)
+    }
+  }
+
   return (
     <div className="mt-5">
+      {/* //sort options */}
+      <div className="dropdown  my-10">
+       
+          <div tabIndex={0} role="button" className="btn  bg-green-500">
+            {sort ? `Sort by: ${sort}` : "sort by"}
+          
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+        >
+          <li
+            onClick={() => {
+              handleSort("Ratings");
+            }}
+          >
+            <a>Ratings</a>
+          </li>
+          <li
+            onClick={() => {
+              handleSort("Number of Pages");
+            }}
+          >
+            <a>Number of Pages</a>
+          </li>
+        </ul>
+      </div>
       <Tabs>
         <TabList>
           <Tab>Read List</Tab>

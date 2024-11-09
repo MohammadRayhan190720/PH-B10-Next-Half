@@ -4,6 +4,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { getstoredReadList, getstoredWishList } from "../../Utilities/addToDb";
 import Book from "../Book/Book";
+import { Helmet } from "react-helmet-async";
+
 
 const ListedBooks = () => {
 
@@ -54,11 +56,12 @@ const ListedBooks = () => {
   return (
     <div className="mt-5">
       {/* //sort options */}
+      <Helmet>
+        <title>Book Vibe - Listed Books</title>
+      </Helmet>
       <div className="dropdown  my-10">
-       
-          <div tabIndex={0} role="button" className="btn  bg-green-500">
-            {sort ? `Sort by: ${sort}` : "sort by"}
-          
+        <div tabIndex={0} role="button" className="btn  bg-green-500">
+          {sort ? `Sort by: ${sort}` : "sort by"}
         </div>
         <ul
           tabIndex={0}

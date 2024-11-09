@@ -6,7 +6,9 @@ import Navbar from "../components/Navbar";
 const MainLayouts = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <div className="h-20">
+        <Navbar></Navbar>
+      </div>
       <div className="max-w-7xl mx-auto">
         <Outlet></Outlet>
       </div>

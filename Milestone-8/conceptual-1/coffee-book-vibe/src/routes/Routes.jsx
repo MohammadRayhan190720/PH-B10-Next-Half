@@ -4,40 +4,46 @@ import Home from "../pages/Home";
 import Coffees from "../pages/Coffees";
 import DashBoard from "../pages/DashBoard";
 import CoffeeCards from "../components/CoffeeCards";
+import CoffeeDetails from "../pages/CoffeeDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayouts></MainLayouts>,
-    children : [
+    children: [
       {
-        path : '/',
-        element : <Home></Home>,
-        loader : () => fetch('/category.json'),
-        children : [
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch("/category.json"),
+        children: [
           {
-            path : '/',
-            element : <CoffeeCards></CoffeeCards>,
-            loader : () => fetch('/coffee.json')
+            path: "/",
+            element: <CoffeeCards></CoffeeCards>,
+            loader: () => fetch("/coffee.json"),
           },
           {
-            path : '/category/:category',
-            element : <CoffeeCards></CoffeeCards>,
-            loader : () => fetch('/coffee.json')
+            path: "/category/:category",
+            element: <CoffeeCards></CoffeeCards>,
+            loader: () => fetch("/coffee.json"),
           },
-        ]
-        
+        ],
       },
       {
-        path : '/coffees',
-        element : <Coffees></Coffees>
+        path: "/coffees",
+        element: <Coffees></Coffees>,
+        loader: () => fetch("/coffee.json"),
       },
       {
-        path : '/dashboard',
-        element : <DashBoard></DashBoard>
+        path: "/coffees/:id",
+        element: <CoffeeDetails></CoffeeDetails>,
+        loader: () => fetch("/coffee.json"),
       },
 
-    ]
+      {
+        path: "/dashboard",
+        element: <DashBoard></DashBoard>,
+      },
+    ],
   },
 ]);
 

@@ -9,4 +9,5 @@
 - octa , oauth, firebase => authentication ar system manage kore
 
 #### 49.1=> Create Firebase Project and install firebase SDK
-- 
+- step by step
+  - npm install firebase

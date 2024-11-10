@@ -1,4 +1,5 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../FIrebase/Firebase.init";
 
 const Login = () => {
 
@@ -6,7 +7,13 @@ const Login = () => {
 
 
   const handleGoogleSignIn = () => {
-    console.log('google comeing soon')
+    signInWithPopup(auth, provider)
+    .then((result)=>{
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
   return (
     <div>

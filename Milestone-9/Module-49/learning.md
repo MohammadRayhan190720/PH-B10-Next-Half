@@ -1,4 +1,4 @@
-## Milestone-8 => React Authentication
+## Milestone-9 => React Authentication
 
 ---
 ### Module-49 => Simple React Firebse Authentication

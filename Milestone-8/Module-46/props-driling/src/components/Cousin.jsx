@@ -1,8 +1,9 @@
 
-const Cousin = ({name}) => {
+const Cousin = ({name,asset}) => {
   return (
-    <div>
+    <div className="border">
       <p>{name}</p>
+      <p>{asset}</p>
       
     </div>
   );

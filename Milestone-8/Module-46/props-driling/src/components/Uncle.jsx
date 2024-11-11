@@ -1,10 +1,10 @@
 import Cousin from "./Cousin";
 
-const Uncle = ({name}) => {
+const Uncle = ({name,asset}) => {
   return (
     <div className="border">
       <h3>Uncle</h3>
-      <Cousin name={'ANik'}></Cousin>
+      <Cousin asset={asset} name={'ANik'}></Cousin>
       <Cousin name={'naim'}></Cousin>
       
     </div>

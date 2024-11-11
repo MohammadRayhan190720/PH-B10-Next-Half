@@ -9,7 +9,14 @@
  - use individual field state for each input field => controlled element
  - conterooled element => one object in a state holding all the input field values
  - uncontrolled elemetnt : useRef to creat a reference to the element and access value by useing like : nameRef.current.value
+ - useHook to handle states and submit and error .example react hook form
 
  - concept of useRef
  - useRef is a React Hook that lets you reference a value that not needed for rendering 
   - const ref = useRef(initialValue)
+
+  ### Custom hook and creat your frist custom hook
+  - 
+
+  ### reuseable form  useing props and children
+  - 

@@ -16,6 +16,12 @@ const SingUp = () => {
     //reset error message
     setErrorMessage('')
 
+    //password length varification
+    if(password.length < 6){
+      setErrorMessage('passwords must be at least 6 characters or longer');
+      return ;
+    }
+
     createUserWithEmailAndPassword(auth , email, password)
     .then((result) =>{
       console.log(result.user)

@@ -22,6 +22,7 @@ const SingUp = () => {
 
     //reset error message
     setErrorMessage('')
+    setSucess('')
 
     //password length varification
     if(password.length < 6){
@@ -40,6 +41,7 @@ const SingUp = () => {
     //accept terms and conditions
     if(!terms){
       setErrorMessage("please Accept our terms and conditions")
+      return;
     }
 
 

@@ -1,27 +1,39 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useRef, useState } from 'react';
 import { auth } from '../firebase/firebase.init';
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
   const [success,setSucess] = useState(false);
   const [errorLogin,setErrorLogin] = useState(' ');
 
+  const emailRef = useRef();
+
 
   const handleLogin = e =>{
     e.preventDefault();
     
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
 
-        //empty error and success message
-        setSucess('')
-        setErrorLogin('');
+//empty error and success message
+  setSucess('')
+  setErrorLogin('');
 
     signInWithEmailAndPassword(auth , email ,password)
     .then(result => {
       console.log(result.user)
-      setSucess(true);
+
+      // email varification alert
+      if(!result.user.emailVerified){
+        setErrorLogin('Please varified your Email and try again')
+        return ;
+
+      }else{
+            setSucess(true);
+
+      }
     })
    .catch(error =>{
     console.log(error.message)
@@ -29,8 +41,26 @@ const Login = () => {
     setSucess(false);
    })
 
-
   }
+
+     const handleForgetPassword = () => {
+       console.log("forget password",emailRef.current.value);
+
+       const email = emailRef.current.value;
+
+      if(!email){
+        alert('please enter a valid email address')
+      }else{
+               sendPasswordResetEmail(auth, email).then(() => {
+                 alert("resent email sent");
+               });
+      }
+
+     
+     
+     };
+
+
   return (
     <div className="hero bg-base-200">
       <div className="hero-content flex-col">
@@ -44,8 +74,9 @@ const Login = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                name='email'
+                name="email"
                 type="email"
+                ref={emailRef}
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -56,13 +87,13 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                name='password'
+                name="password"
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
               />
-              <label className="label">
+              <label onClick={handleForgetPassword} className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
                 </a>
@@ -72,12 +103,23 @@ const Login = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
-          {
-            success && <p className='text-green-600 text-xl font-bold'>Successfully Logged in</p>
-          }
-          {
-            errorLogin && <p className='text-red-600 text-xl font-bold'>{errorLogin}</p>
-          }
+          <div>
+            {success && (
+              <p className="text-green-600 text-xl font-bold">
+                Successfully Logged in
+              </p>
+            )}
+            {errorLogin && (
+              <p className="text-red-600 text-xl font-bold">{errorLogin}</p>
+            )}
+
+            <p className="text-center p-3 text-lg">
+              New to This Website.Please{" "}
+              <Link className="underline text-green-600" to="/singup">
+                Sign Up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

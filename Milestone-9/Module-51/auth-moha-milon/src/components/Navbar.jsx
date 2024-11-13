@@ -9,6 +9,7 @@ const Navbar = () => {
   const {name} = useContext(AuthContext)
   console.log(name)
 
+
   const links = <>
   <NavLink className='mr-5' to='/'>Home</NavLink>
   <NavLink className='mr-5' to= '/login'>Login</NavLink>

@@ -22,3 +22,5 @@
   const person = {fav : fav, age : age , money : money}
 
   - const person = {fav , age , money}
+
+  ### Emplement privet route and auth loder

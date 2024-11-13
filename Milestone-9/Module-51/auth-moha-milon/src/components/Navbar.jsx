@@ -24,7 +24,14 @@ const Navbar = () => {
   <NavLink className='mr-5' to='/'>Home</NavLink>
   <NavLink className='mr-5' to= '/login'>Login</NavLink>
   <NavLink className='mr-5' to= '/singup'>Sing Up</NavLink>
-  <NavLink className='mr-5' to= '/oders'>Oders</NavLink>
+  {
+    user && 
+    <>
+      <NavLink className='mr-5' to= '/oders'>Oders</NavLink>
+      <NavLink className='mr-5' to= '/profile'>Profile</NavLink>
+    </>
+
+  }
   </>
 
   return (

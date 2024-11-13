@@ -1,7 +1,9 @@
  import { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider';
 const SingUp = () => {
+
+  const navigate = useNavigate();
 
   const {creatUser} = useContext(AuthContext);
 
@@ -18,6 +20,12 @@ const SingUp = () => {
     creatUser(email,password)
     .then((result)=>{
       console.log(result.user)
+
+      //reset form
+      e.target.reset();
+
+      //navigate to home page
+      navigate('/')
 
     })
     .catch((error) =>{

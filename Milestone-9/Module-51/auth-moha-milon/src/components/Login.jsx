@@ -1,9 +1,11 @@
  import { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider';
 const Login = () => {
 
-  const {loginUser} = useContext(AuthContext)
+  const { loginUser, signInWithGoogle } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleLoginForm = e =>{
     e.preventDefault();
@@ -17,6 +19,25 @@ const Login = () => {
     loginUser(email, password)
     .then((result) =>{
       console.log(result.user)
+
+      //form reset
+      e.target.reset();
+
+      //navigate to home page
+      navigate('/');
+    })
+    .catch((error) =>{
+      console.log(error.message)
+    })
+  }
+
+  //sign in with google
+
+  const handleSignInWithGoogle = () =>{
+    signInWithGoogle()
+    .then((result) =>{
+      console.log(result.user)
+      navigate('/')
     })
     .catch((error) =>{
       console.log(error.message)
@@ -68,6 +89,7 @@ const Login = () => {
 
             <p className="text-center">New In this Website.Please <Link className='text-green-600 underline' to = '/singup'>SIng Up</Link>  </p>
           </form>
+          <button onClick={handleSignInWithGoogle} className='px-5 py-3 rounded-xl'>Sign In With Google</button>
         </div>
       </div>
     </div>

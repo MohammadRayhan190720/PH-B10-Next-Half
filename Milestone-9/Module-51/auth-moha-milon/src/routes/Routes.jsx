@@ -4,6 +4,8 @@ import Home from "../components/Home";
 import Login from "../components/Login";
 import SingUp from "../components/SingUp";
 import Oders from "../components/Oders";
+import PrivetRoute from "./PrivetRoute";
+import Profile from "../components/Profile";
 
 
   const router = createBrowserRouter([
@@ -25,7 +27,11 @@ import Oders from "../components/Oders";
         },
         {
           path : '/oders',
-          element: <Oders></Oders>
+          element: <PrivetRoute><Oders></Oders></PrivetRoute>,
+        },
+        {
+          path : '/profile',
+          element: <PrivetRoute> <Profile></Profile>  </PrivetRoute>
         }
       ]
     },

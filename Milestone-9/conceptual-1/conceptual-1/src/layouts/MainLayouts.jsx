@@ -1,13 +1,24 @@
 import React, { createContext, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import { Outlet } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import auth from "../firebase/firebase.init";
 
 export const AuthContext = createContext();
-const MainLayouts = () => {
 
-  const [user,setUser] = useState(null)
+const MainLayouts = () => {
+  
+  const navigate = useNavigate();
+  const [user,setUser] = useState(null);
+  const [loading,setLoading] = useState(true);
 
 
   const googleProvider = new GoogleAuthProvider();
@@ -37,22 +48,72 @@ const MainLayouts = () => {
     signOut(auth)
     .then(() => {
       console.log("sign out successfully");
+      navigate('/signin');
     })
     .catch((error) => {
       console.log(error.message);
     })
   }
 
+  //singupwithEmailandPassword
+  const handleSignUp = (email,password) =>{
+     createUserWithEmailAndPassword(auth, email, password)
+     .then((result) => {
+      console.log(result.user)
+      navigate('/');
+      setLoading(true);
+      
+     })
+     .catch((error) => {
+      console.log(error.message)
+     })
+  }
+
+  //signInwithEmailandpassword
+
+  const handleSignIn = (email,password) =>{
+    signInWithEmailAndPassword(auth, email, password)
+    .then((result) => {
+      console.log(result.user)
+      navigate('/')
+      setLoading(true);
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+  }
+
+
   useEffect(() =>{
    console.log('current user' , user)
 
   },[user] )
 
+  
+
+  useEffect(() =>{
+     const unSubcribe = onAuthStateChanged(auth , (currentUser)=>{
+       setUser(currentUser)
+       setLoading(false)
+     })
+
+     return () =>{
+      unSubcribe
+     }
+  
+
+
+
+  },[] )
+
   const authInfo = {
     handleGoogleSignIn,
     handleGithubSignIn,
     handleSignOut,
-    user
+    user,
+    handleSignUp,
+    handleSignIn,
+    loading
 
   }
   

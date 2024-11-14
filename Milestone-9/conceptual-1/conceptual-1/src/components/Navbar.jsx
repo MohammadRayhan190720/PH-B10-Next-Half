@@ -4,11 +4,17 @@ import { AuthContext } from "../layouts/MainLayouts";
 
 const Navbar = () => {
 
-  const {handleSignOut} = useContext(AuthContext);
+  const {handleSignOut , user} = useContext(AuthContext);
 
   const links = <>
   <NavLink className='mr-5' to='/'>Home</NavLink>
   <NavLink className='mr-5' to='/login'>Login</NavLink>
+  <NavLink className='mr-5' to='/signup'>Sign Up</NavLink>
+  <NavLink className='mr-5' to='/signin'>Sign In</NavLink>
+  {
+    user &&   <NavLink className='mr-5' to='/profile'>Profile</NavLink>
+
+  }
   </>
   return (
     <div className="navbar bg-base-100">
@@ -46,6 +52,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        <button>{user?.email}</button>
+        <button>{user?.displayName}</button>
         <button onClick={handleSignOut} className="btn">Sign out</button>
       </div>
     </div>

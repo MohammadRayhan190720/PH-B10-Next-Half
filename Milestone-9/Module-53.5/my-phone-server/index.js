@@ -8,7 +8,7 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/contact',(req, res)=>{
-  res.send('My contact server is running noooooooow!')
+  res.send('My contact server is runnnnnnning noooooooow!')
 })
 
 app.get('/phones', (req,res)=>{

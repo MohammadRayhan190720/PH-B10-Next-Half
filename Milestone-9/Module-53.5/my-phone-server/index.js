@@ -1,7 +1,12 @@
 const express = require('express');
+var cors = require("cors");
 const phones = require('./phones.json');
 const app = express();
 const port = 5000;
+
+//middleware
+app.use(cors());
+
 
 app.get('/', (req, res)=>{
   res.send('My Phone Server is runnnnnnnning now!')

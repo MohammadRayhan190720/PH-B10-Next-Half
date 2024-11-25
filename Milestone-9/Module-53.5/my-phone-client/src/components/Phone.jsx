@@ -1,8 +1,13 @@
+import { useLoaderData } from "react-router-dom";
 
 const Phone = () => {
+  const phone = useLoaderData();
   return (
     <div>
-      <p>Single Phones</p>
+      <div>
+        <img src={phone.image} alt={phone.name} />
+        <p>price: ${phone.price}</p>
+      </div>
       
     </div>
   );

@@ -35,10 +35,15 @@
 - How does api connect client and server?
 
 - Rest API=> Get,post,put/patch,delete method => CRUD Operation
+  -get => ডাটা আনবে
+  -post => ডাটা রাখবে
+  -put=> ডাটাবেস এর ডাটা আপডেট করবে
+  -delete=> ডাটাবেস এর ডাঁটা রিমুভ করবে
 - Rest Respons => JSON FOrmat
 
 - How POST API connect client and server?
  ```Javascript
+
     Const coffeData = {
       name,taste,category,details,image,price
     }
@@ -52,11 +57,29 @@
     })
     .then(res => res.json())
     .then(data => console.log(data))
-    })  ``` 
+    })
+   ```
 
 
 - Request and Reponse model
  - request => Methods, resources,headers,content
- - reponse => Status code,header,content
+ - the request object represents the HTTP request and has properties
+  - request query string
+  - paremeters
+  - body
+  - HTTP headers and so on
+   - req.body => Contains Key-value pairs of data submitted in the request body
+   
+   -req.params => THis property is an object containing properties mapped to the names route parameters .For example,If you have the route /user/:name the the name property is available as req.params.name.THis object defaults to {} console.log(req.params.name)
 
- -- req.body => Contains Key-value pairs of data submitted in the request body
+   - req.query=> This property is an object containing a property for each query string parameter in the route.When query parser is set to disabled,it is an empty object,otherwuse it is the reqult of the cinfigured query parser
+
+ - reponse => Status code,header,content
+  - The res object represents the HTTP response that an Express app sends when it gets an HTTP request and an Express app sends when it gets an HTTP request and has methods
+   - res.send()
+   - res.json()
+   - res.status(),res.sendStatus()
+   - res.set() and so on
+
+
+## Node js and other Languages.How does Node js work?

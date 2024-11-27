@@ -83,3 +83,29 @@
 
 
 ## Node js and other Languages.How does Node js work?
+- node js is a server side javascript runtime
+- not a programming language
+-- Node JS-
+- Open source
+- cross platform
+- JS Runtime environment
+- Allows server side scripting
+- single threaded,non-bolcking
+- Capable of asynchronous I/O(input/output)
+- Has event-driven architrcture
+
+- JS code may be executed in one of two runtime environments
+ - A browsers runtime environment
+ - THe Node runtime environment
+
+### When To use node js?
+- Api Application - A grest choice for constructing an API application with both relational and non-relational databse
+- its all because
+ - Node js runs on a single thread which makes it easuer to handle up to 10,000 concurrent requests
+ - all blocking I/O tasks are always being processed asynchronously by internal threads without interuoting the main thread
+ - this makes node js good to handle the requests,make databse iperation and expose JSON object for clients
+ - good to building real-time applications like
+  - messageing 
+  - notifications delivary
+  - line streming 
+  - collaboration tools

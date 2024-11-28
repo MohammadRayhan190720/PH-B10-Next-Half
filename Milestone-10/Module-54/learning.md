@@ -147,7 +147,7 @@
    
   - SQL Database
    - SQL(Structured Query Language) is the standard for dealing with Relation Database
-   - SQL Databse or relational databse os a collection of highly structured tables
+   - SQL Databse or relational databse as a collection of highly structured tables
    - each row reflects a data entity and every column defines a specific information field
 
   -NoSQL Database
@@ -159,12 +159,12 @@
    - MongoDB is an open-source ,cross platform,distributed document database
    - MongoDB is Developed by MongoDB inc and categorized as a NoSQL database
    - MongoDB is not a Ralational databseManagement System
-   - It is oppisite to SQL based databases where it does not normalize data under schemas and tables where every table has a dixed structure
+   - It is oppisite to SQL based databases where it does not normalize data under schemas and tables where every table has a fixed structure
    - It stores data in the collections as JSON based documents and does not enforce schemas.It does not have tables ,rows and columns as other SQL (RDBMS) databases
   
 ### Advantages of MOngoDB
- - MongoDB stores data as JSON based document that does not enforce the schema.It allows us to store hierarchical data in a document.This makes it easy to store and retrieve data in an eddicient manner
+ - MongoDB stores data as JSON based document that does not enforce the schema.It allows us to store hierarchical data in a document.This makes it easy to store and retrieve data in an efficient manner
  - It is easy to scale up or down as per requerment since it is a document based databse.MongoDB also allows us to split data across multiple servers
  - MongoBD provides rich features like indexing,aggregation,file store ect.
  - MongoDB performs fast  with huge data
- - 
+------

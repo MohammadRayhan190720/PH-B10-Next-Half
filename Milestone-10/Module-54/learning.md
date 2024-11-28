@@ -31,6 +31,8 @@
 
 - Relation between client ,server and databse?
 
+---------
+
 ## client and server connection with request and response..
 - How does api connect client and server?
 
@@ -82,15 +84,21 @@
    - res.set() and so on
 
 
+-----------
+
 ## Node js and other Languages.How does Node js work?
 - node js is a server side javascript runtime
+- javascript laibrary
 - not a programming language
 -- Node JS-
 - Open source
+- very fast
+- no buffering
+- asynchronous
 - cross platform
 - JS Runtime environment
 - Allows server side scripting
-- single threaded,non-bolcking
+- single threaded,non-bolcking highly scalable
 - Capable of asynchronous I/O(input/output)
 - Has event-driven architrcture
 
@@ -99,9 +107,9 @@
  - THe Node runtime environment
 
 ### When To use node js?
-- Api Application - A grest choice for constructing an API application with both relational and non-relational databse
+- Api Application - A great choice for constructing an API application with both relational and non-relational databse
 - its all because
- - Node js runs on a single thread which makes it easuer to handle up to 10,000 concurrent requests
+ - Node js runs on a single thread which makes it easyer to handle up to 10,000 concurrent requests
  - all blocking I/O tasks are always being processed asynchronously by internal threads without interuoting the main thread
  - this makes node js good to handle the requests,make databse iperation and expose JSON object for clients
  - good to building real-time applications like
@@ -109,3 +117,31 @@
   - notifications delivary
   - line streming 
   - collaboration tools
+
+
+--------
+
+## What is Node js and express js and why use them?
+- javascript => crome ar upore build kora => Node Js=> javascript ar upore build kora
+
+### What is Express js and why should you learn express js?
+- Express is a node js web application framework that provides broad fetures for building web and mobile applications
+- It is used to build a single page,multipage,and hybrid web application
+- Its a layer build on the top of the nodejs that helps manage servers and routes
+------
+- What is Express JS Middleware?
+ - Middleware in Express are functions that come into play after the server receives the request and before the response is sent to the client
+ - they are arranges in a chain and are called in sequence
+ - We can use middleware functions for different types of processing tasks requires for fulfilling the request
+  - database querying
+  - making API calls
+  - preparing the response
+  - and finally calling the next miffleware function in the chain
+  - We call app.use() to add a middleware function to our Express application
+
+  ----------------------------
+
+  ## What is Database ,DBMS,mongoDB, NoSQL vs SQL
+  - What is Database?
+   - Databse can be considered as a container filled with data which is electronically stored in a computer system
+   

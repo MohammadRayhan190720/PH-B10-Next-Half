@@ -145,3 +145,12 @@
   - What is Database?
    - Databse can be considered as a container filled with data which is electronically stored in a computer system
    
+  - SQL Database
+   - SQL(Structured Query Language) is the standard for dealing with Relation Database
+   - SQL Databse or relational databse os a collection of highly structured tables
+   - each row reflects a data entity and every column defines a specific information field
+
+  -NoSQL Database
+   - NoSQL Database are non-labular databses and store sata differently than relational tables 
+   - it avoides joins and is easy to scale
+   - The major purpose of useing a NoSQL databse is for distribute data stores with humongous data storage needs

@@ -33,10 +33,19 @@ async function run() {
         // const userCollection = database.collection("users");
         const userCollection = client.db('usersDB').collection("users");
 
-      //read data => get request => step-2
+      //read many data => get request => step-2
       app.get('/users', async (req, res) =>{
         const curson = userCollection.find();
         const result = await curson.toArray();
+        res.send(result);
+      })
+
+      //read single data => get request => step-4
+      app.get('/users/:id', async (req, res) =>{
+        const id = req.params.id;
+        
+        const query = { _id: new ObjectId(id)}
+        const result = await userCollection.findOne(query);
         res.send(result);
       })
 
@@ -47,6 +56,29 @@ async function run() {
       console.log("new user",user)
          const result = await userCollection.insertOne(user);
          res.send(result);
+    })
+
+    // update data => put request
+
+    app.put('/users/:id',async(req,res)=>{
+      const id = req.params.id;
+      const updateUser = req.body;
+      console.log("update user",updateUser)
+
+      //update in the database
+
+      const filter ={ _id: new ObjectId(id)}
+      const options = {upsert: true}
+
+      const updatedUser = {
+        $set: {
+          name: updateUser.name,
+          email: updateUser.email,
+        }
+      }
+
+      const result = await userCollection.updateOne(filter, updatedUser, options)
+      res.send(result);
     })
 
     //delete data => step-3

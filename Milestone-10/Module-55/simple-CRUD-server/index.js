@@ -35,8 +35,8 @@ async function run() {
 
       //read many data => get request => step-2
       app.get('/users', async (req, res) =>{
-        const curson = userCollection.find();
-        const result = await curson.toArray();
+        const cursor = userCollection.find();
+        const result = await cursor.toArray();
         res.send(result);
       })
 

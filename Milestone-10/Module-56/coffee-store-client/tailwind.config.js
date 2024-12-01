@@ -7,6 +7,8 @@ export default {
     extend: {
       fontFamily: {
         fontRancho: ["Rancho", "cursive"],
+        fontRailway: [ "Raleway", 'sans-serif']
+
       },
       backgroundImage: {
         banner: "url('./assets/images/more/6.jpeg')",

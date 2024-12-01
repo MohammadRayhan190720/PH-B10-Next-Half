@@ -5,15 +5,11 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 
-const Product = ({ coffee}) => {
-  const { _id,name, chef, supplier, taste, category, details, photo } = coffee;
-  
+const Product = ({ coffee,coffees, setCoffees }) => {
+  const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
-
-
-
-  const handleDelete = _id =>{
-    console.log("delete product",_id)
+  const handleDelete = (_id) => {
+    console.log("delete product", _id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -25,29 +21,27 @@ const Product = ({ coffee}) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-
-        fetch(`http://localhost:5000/coffee/${_id}`,{
+        fetch(`http://localhost:5000/coffee/${_id}`, {
           method: "DELETE",
         })
-        .then(res => res.json())
-        .then(data =>{
-          console.log(data);
-          if(data.deletedCount > 0){
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your Coffee has been deleted.",
-              icon: "success",
-
-            });
-            const remainingCoffees = remainCoffee.filter(cof => cof._id !== _id);
-            setRemainCoffee(remainingCoffees)
-
-          }
-        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Coffee has been deleted.",
+                icon: "success",
+              });
+              const remainingCoffees = coffees.filter(
+                cof => cof._id !== _id
+              );
+              setCoffees(remainingCoffees);
+            }
+          });
       }
     });
-  }
+  };
 
   return (
     <div className="card flex-row bg-base-100 shadow-xl">

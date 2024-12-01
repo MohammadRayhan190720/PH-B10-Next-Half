@@ -1,12 +1,17 @@
 import { Link, Links, NavLink } from "react-router-dom";
 import Logo from '../assets/images/more/logo1.png'
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+
+  const { user,signOutUser} = useContext(AuthContext)
 
   const links = <>
   <NavLink className="mr-5" to='/'>Home</NavLink>
   <NavLink className="mr-5" to='/addcoffee'>Add Coffee</NavLink>
   <NavLink className="mr-5" to='/updatecoffee'>Update Coffee</NavLink>
+  <NavLink className="mr-5" to='/users'>Users</NavLink>
 
   </>
   return (
@@ -45,12 +50,18 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 text-xl">{links}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn">
-        <Link to='/signin'>
-        Sign In
-        </Link>
-
-          </button>
+        {user && user.email ? (
+          <div className="flex items-center gap-5 text-xl">
+            <p>{user.email}</p>
+            <button onClick={signOutUser} className="btn">
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <Link className="btn" to="/signin">
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );

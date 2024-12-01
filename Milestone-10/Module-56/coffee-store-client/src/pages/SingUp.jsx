@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
+
 
 
 const SingUp = () => {
 
   const {creatNewUser} = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleSignUp = e =>{
     e.preventDefault();
@@ -22,6 +25,33 @@ const SingUp = () => {
     creatNewUser(email,password)
     .then(result =>{
       console.log(result.user)
+      navigate('/')
+      const creatAt = result.user.metadata?.creationTime;
+
+      const users = {name,photo,email,creatAt}
+
+      //send user data to database
+
+      fetch("http://localhost:5000/users",{
+        method: "POST",
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(users)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if (data.insertedId){
+          Swal.fire({
+            title: "User created",
+            text: "New User Created Successfully!",
+            icon: "success",
+          });
+        }
+
+
+      })
     })
     .catch(err => {
       console.log(err.message)
@@ -89,8 +119,18 @@ const SingUp = () => {
                   required
                 />
               </div>
+              <div className="font-semibold">
+                <p>
+                  Already have an Account?.please
+                  <Link className="text-red-600 underline" to="/signin">
+                    Sign In 
+                  </Link>
+                </p>
+              </div>
               <div className="form-control mt-6">
-                <button className="btn bg-orange-950 text-white">Sign Up</button>
+                <button className="btn bg-orange-950 text-white">
+                  Sign Up
+                </button>
               </div>
             </form>
           </div>

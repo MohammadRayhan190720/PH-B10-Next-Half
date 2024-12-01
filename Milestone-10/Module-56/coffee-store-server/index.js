@@ -36,6 +36,10 @@ async function run() {
 
     const coffeeCollection = client.db('coffeeDB').collection('coffees')
 
+    //for userCollection
+
+    const userCollection = client.db('userDB').collection('users')
+
   //read => get request
   app.get('/coffee',async(req,res)=>{
     const cursor = coffeeCollection.find();
@@ -96,6 +100,47 @@ async function run() {
  res.send(result)
  })
 
+
+//  for users Apis
+
+app.get('/users',async (req,res)=>{
+  const cursor = userCollection.find();
+  const result = await cursor.toArray();
+
+  res.send(result);
+})
+
+//post request
+
+app.post('/users',async (req, res)=>{
+  const newUser = req.body;
+  console.log("created new user",newUser);
+
+  const result = await userCollection.insertOne(newUser);
+  res.send(result);
+})
+
+//patch => update request
+
+app.patch('/users/:email', async (req, res)=>{
+  const email = req.params.email;
+  const filter = {email}
+  const updatedDoc = {
+    $set: {
+      lastSignInTime: req.body?.lastSignInTime,
+    },
+  };
+  const result = await userCollection.updateOne(filter,updatedDoc)
+  res.send(result);
+})
+
+//delete request
+app.delete('/users/:id', async (req, res)=>{
+  const id = req.params.id;
+  const query ={_id: new ObjectId(id)}
+  const result = await userCollection.deleteOne(query);
+  res.send(result);
+})
 
 
 

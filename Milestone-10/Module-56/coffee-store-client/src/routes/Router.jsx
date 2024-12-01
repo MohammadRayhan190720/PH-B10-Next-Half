@@ -5,6 +5,7 @@ import UpdateCoffee from "../pages/UpdateCoffee";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SingUp from "../pages/SingUp";
+import Users from "../components/Users";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
         element: <Home></Home>,
         loader: () => fetch("http://localhost:5000/coffee"),
       },
+      {
+        path: '/users',
+        element: <Users></Users>,
+        loader: () => fetch("http://localhost:5000/users")
+      }
     ],
   },
   {

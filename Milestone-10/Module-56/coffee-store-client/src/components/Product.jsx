@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 
 const Product = ({ coffee,coffees, setCoffees }) => {
-  const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
+  const { _id, name, chef,  taste,  photo } = coffee;
 
   const handleDelete = (_id) => {
-    console.log("delete product", _id);
+    // console.log("delete product", _id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -26,7 +26,7 @@ const Product = ({ coffee,coffees, setCoffees }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -54,9 +54,11 @@ const Product = ({ coffee,coffees, setCoffees }) => {
         <h2 className="card-title">Taste:{taste}</h2>
       </div>
       <div className="flex flex-col justify-center items-center mr-8 text-2xl text-white space-y-3">
-        <button className="bg-[#D2B48C] p-2">
-          <FaEye />
-        </button>
+        <Link to={`/coffeedetails/${_id}`}>
+          <button className="bg-[#D2B48C] p-2">
+            <FaEye />
+          </button>
+        </Link>
         <Link to={`/updatecoffee/${_id}`}>
           <button className="bg-[#3C393B] p-2">
             <CiEdit />

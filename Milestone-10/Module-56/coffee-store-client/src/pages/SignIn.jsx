@@ -15,11 +15,11 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email, password);
+    // console.log(email, password);
 
     signInuser(email,password)
     .then(result =>{
-      console.log(result.user);
+      // console.log(result.user);
 
       //update lastSignInTime
 
@@ -35,13 +35,13 @@ const SignIn = () => {
       })
       .then(res => res.json())
       .then(data =>{
-        console.log(data)
+        // console.log(data)
       })
 
       navigate("/");
     })
     .catch(err =>{
-      console.log(err.message);
+      // console.log(err.message);
     })
   }
   return (

@@ -10,7 +10,7 @@ const Users = () => {
   const [users,setUsers] = useState(loadedUsers);
 
   const handleDelete = _id =>{
-    console.log("please delete", _id)
+    // console.log("please delete", _id)
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,7 +28,7 @@ const Users = () => {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data);
+                // console.log(data);
                 if(data.deletedCount > 0){
                           Swal.fire({
                             title: "Deleted!",

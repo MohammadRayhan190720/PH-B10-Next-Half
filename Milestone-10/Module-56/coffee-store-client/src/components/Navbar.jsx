@@ -10,7 +10,6 @@ const Navbar = () => {
   const links = <>
   <NavLink className="mr-5" to='/'>Home</NavLink>
   <NavLink className="mr-5" to='/addcoffee'>Add Coffee</NavLink>
-  <NavLink className="mr-5" to='/updatecoffee'>Update Coffee</NavLink>
   <NavLink className="mr-5" to='/users'>Users</NavLink>
 
   </>

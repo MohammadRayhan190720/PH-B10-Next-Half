@@ -20,11 +20,11 @@ const SingUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     
-    console.log(name, photo, email, password)
+    // console.log(name, photo, email, password)
 
     creatNewUser(email,password)
     .then(result =>{
-      console.log(result.user)
+      // console.log(result.user)
       navigate('/')
       const creatAt = result.user.metadata?.creationTime;
 
@@ -41,7 +41,7 @@ const SingUp = () => {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        // console.log(data)
         if (data.insertedId){
           Swal.fire({
             title: "User created",
@@ -54,7 +54,7 @@ const SingUp = () => {
       })
     })
     .catch(err => {
-      console.log(err.message)
+      // console.log(err.message)
     })
 
   }

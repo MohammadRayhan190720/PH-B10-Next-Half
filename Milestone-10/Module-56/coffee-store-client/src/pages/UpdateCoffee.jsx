@@ -33,7 +33,7 @@ const UpdateCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("response form server", data);
+        // console.log("response form server", data);
         if (data.modifiedCount) {
           Swal.fire({
             title: "Success",

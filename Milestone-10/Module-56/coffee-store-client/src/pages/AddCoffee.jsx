@@ -17,7 +17,7 @@ const AddCoffee = () => {
     const photo = form.photo.value;
 
     const newCoffee = { name, chef, supplier, taste, category, details, photo };
-    console.log(newCoffee);
+    // console.log(newCoffee);
 
     //sent data to server
 
@@ -30,7 +30,7 @@ const AddCoffee = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log("response form server",data);
+        // console.log("response form server",data);
         if(data.insertedId) {
           Swal.fire({
             title: "Success",

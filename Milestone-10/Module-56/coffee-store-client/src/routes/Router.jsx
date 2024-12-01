@@ -6,6 +6,8 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SingUp from "../pages/SingUp";
 import Users from "../components/Users";
+import PrivetRoute from "./PrivetRoute";
+import CoffeeDetails from "../pages/coffeeDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +20,18 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:5000/coffee"),
       },
       {
-        path: '/users',
-        element: <Users></Users>,
-        loader: () => fetch("http://localhost:5000/users")
+        path: "/users",
+        element: (
+          <PrivetRoute>
+            <Users></Users>
+          </PrivetRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/users"),
+      },
+      {
+        path: '/coffeedetails/:id',
+        element: <PrivetRoute> <CoffeeDetails></CoffeeDetails> </PrivetRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
       }
     ],
   },
@@ -34,14 +45,13 @@ const router = createBrowserRouter([
     loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`),
   },
   {
-    path: '/signin',
-    element: <SignIn></SignIn>
-
+    path: "/signin",
+    element: <SignIn></SignIn>,
   },
   {
-    path: '/signup',
-    element: <SingUp></SingUp>
-  }
+    path: "/signup",
+    element: <SingUp></SingUp>,
+  },
 ]);
 
 export default router;

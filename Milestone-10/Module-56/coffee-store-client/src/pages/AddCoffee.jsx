@@ -21,17 +21,17 @@ const AddCoffee = () => {
 
     //sent data to server
 
-    fetch("http://localhost:5000/coffee", {
+    fetch("https://coffee-store-server-eight-red.vercel.app/coffee", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(newCoffee),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         // console.log("response form server",data);
-        if(data.insertedId) {
+        if (data.insertedId) {
           Swal.fire({
             title: "Success",
             text: "Coffee inserted successfully",

@@ -17,7 +17,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/coffee"),
+        loader: () =>
+          fetch("https://coffee-store-server-eight-red.vercel.app/coffee"),
       },
       {
         path: "/users",
@@ -26,13 +27,20 @@ const router = createBrowserRouter([
             <Users></Users>
           </PrivetRoute>
         ),
-        loader: () => fetch("http://localhost:5000/users"),
+        loader: () =>
+          fetch("https://coffee-store-server-eight-red.vercel.app/users"),
       },
       {
-        path: '/coffeedetails/:id',
-        element: <PrivetRoute> <CoffeeDetails></CoffeeDetails> </PrivetRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
-      }
+        path: "/coffeedetails/:id",
+        element: (
+          <PrivetRoute>
+            {" "}
+            <CoffeeDetails></CoffeeDetails>{" "}
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://coffee-store-server-eight-red.vercel.app/coffee/${params.id}`),
+      },
     ],
   },
   {
@@ -42,7 +50,7 @@ const router = createBrowserRouter([
   {
     path: "/updatecoffee/:id",
     element: <UpdateCoffee></UpdateCoffee>,
-    loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`),
+    loader: ({ params }) => fetch(`https://coffee-store-server-eight-red.vercel.app/coffee/${params.id}`),
   },
   {
     path: "/signin",

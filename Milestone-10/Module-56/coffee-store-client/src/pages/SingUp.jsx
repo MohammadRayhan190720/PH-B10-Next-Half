@@ -32,26 +32,24 @@ const SingUp = () => {
 
       //send user data to database
 
-      fetch("http://localhost:5000/users",{
+      fetch("https://coffee-store-server-eight-red.vercel.app/users", {
         method: "POST",
-        headers:{
-          'content-type': 'application/json'
+        headers: {
+          "content-type": "application/json",
         },
-        body: JSON.stringify(users)
+        body: JSON.stringify(users),
       })
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data)
-        if (data.insertedId){
-          Swal.fire({
-            title: "User created",
-            text: "New User Created Successfully!",
-            icon: "success",
-          });
-        }
-
-
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data)
+          if (data.insertedId) {
+            Swal.fire({
+              title: "User created",
+              text: "New User Created Successfully!",
+              icon: "success",
+            });
+          }
+        });
     })
     .catch(err => {
       // console.log(err.message)

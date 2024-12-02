@@ -52,7 +52,7 @@ const SingUp = () => {
         });
     })
     .catch(err => {
-      // console.log(err.message)
+      console.log(err.message)
     })
 
   }

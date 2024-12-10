@@ -701,4 +701,208 @@ Strings can be concatenated using:
 
 ---
 
+## Here are the **Top 10 Interview Questions** about **Objects** in JavaScript, along with their answers:
+
+---
+
+### **1. What is an object in JavaScript? How do you create one?**  
+**Answer:**  
+An **object** in JavaScript is a collection of key-value pairs. Keys are strings (or Symbols), and values can be of any type.
+
+**Ways to create an object:**  
+1. **Object literal:**  
+   ```javascript
+   let obj = { name: "John", age: 30 };
+   ```
+
+2. **Using `new Object()`:**  
+   ```javascript
+   let obj = new Object();
+   obj.name = "John";
+   obj.age = 30;
+   ```
+
+3. **Using a constructor function or class:**  
+   ```javascript
+   function Person(name, age) {
+       this.name = name;
+       this.age = age;
+   }
+   let obj = new Person("John", 30);
+   ```
+
+---
+
+### **2. How do you access and update object properties?**  
+**Answer:**  
+- **Dot notation:**  
+  ```javascript
+  console.log(obj.name); // Access
+  obj.name = "Doe"; // Update
+  ```
+
+- **Bracket notation:**  
+  ```javascript
+  console.log(obj["name"]); // Access
+  obj["name"] = "Doe"; // Update
+  ```
+
+---
+
+### **3. What are the differences between `Object.keys()`, `Object.values()`, and `Object.entries()`?**  
+**Answer:**  
+- **`Object.keys()`**: Returns an array of keys.  
+  ```javascript
+  let obj = { a: 1, b: 2 };
+  console.log(Object.keys(obj)); // ["a", "b"]
+  ```
+
+- **`Object.values()`**: Returns an array of values.  
+  ```javascript
+  console.log(Object.values(obj)); // [1, 2]
+  ```
+
+- **`Object.entries()`**: Returns an array of key-value pairs.  
+  ```javascript
+  console.log(Object.entries(obj)); // [["a", 1], ["b", 2]]
+  ```
+
+---
+
+### **4. How can you copy an object in JavaScript?**  
+**Answer:**  
+1. **Using `Object.assign()`**:  
+   ```javascript
+   let obj = { a: 1 };
+   let copy = Object.assign({}, obj);
+   ```
+
+2. **Using the spread operator (`...`)**:  
+   ```javascript
+   let copy = { ...obj };
+   ```
+
+3. **Deep copy with JSON methods (for simple objects):**  
+   ```javascript
+   let deepCopy = JSON.parse(JSON.stringify(obj));
+   ```
+
+---
+
+### **5. How do you check if a property exists in an object?**  
+**Answer:**  
+1. **Using the `in` operator:**  
+   ```javascript
+   console.log("name" in obj); // true
+   ```
+
+2. **Using `hasOwnProperty()` method:**  
+   ```javascript
+   console.log(obj.hasOwnProperty("name")); // true
+   ```
+
+---
+
+### **6. How do you iterate over the properties of an object?**  
+**Answer:**  
+1. **Using `for...in`:**  
+   ```javascript
+   for (let key in obj) {
+       console.log(key, obj[key]);
+   }
+   ```
+
+2. **Using `Object.keys()` with `forEach()`:**  
+   ```javascript
+   Object.keys(obj).forEach((key) => console.log(key, obj[key]));
+   ```
+
+3. **Using `Object.entries()` with `for...of`:**  
+   ```javascript
+   for (let [key, value] of Object.entries(obj)) {
+       console.log(key, value);
+   }
+   ```
+
+---
+
+### **7. What are getter and setter methods in JavaScript objects?**  
+**Answer:**  
+- **Getter**: Used to define a method that is called when a property is accessed.  
+- **Setter**: Used to define a method that is called when a property is set.  
+
+**Example:**  
+```javascript
+let obj = {
+    _name: "John",
+    get name() {
+        return this._name;
+    },
+    set name(value) {
+        this._name = value;
+    },
+};
+
+console.log(obj.name); // Access using getter: "John"
+obj.name = "Doe"; // Update using setter
+console.log(obj.name); // "Doe"
+```
+
+---
+
+### **8. How do you merge two or more objects?**  
+**Answer:**  
+1. **Using `Object.assign()`**:  
+   ```javascript
+   let obj1 = { a: 1 };
+   let obj2 = { b: 2 };
+   let merged = Object.assign({}, obj1, obj2);
+   ```
+
+2. **Using the spread operator (`...`)**:  
+   ```javascript
+   let merged = { ...obj1, ...obj2 };
+   ```
+
+---
+
+### **9. What is the difference between `Object.create()` and `{}` for creating objects?**  
+**Answer:**  
+- **`Object.create()`**: Creates a new object with a specified prototype.  
+   ```javascript
+   let proto = { greet: () => console.log("Hello") };
+   let obj = Object.create(proto);
+   obj.greet(); // "Hello"
+   ```
+
+- **`{}` (Object literal)**: Creates a new object without explicitly setting a prototype.  
+   ```javascript
+   let obj = {};
+   console.log(Object.getPrototypeOf(obj) === Object.prototype); // true
+   ```
+
+---
+
+### **10. What is the purpose of `Object.freeze()` and `Object.seal()`?**  
+**Answer:**  
+- **`Object.freeze()`**: Prevents any changes (adding, deleting, or modifying properties) to the object.  
+   ```javascript
+   let obj = { a: 1 };
+   Object.freeze(obj);
+   obj.a = 2; // No effect
+   console.log(obj.a); // 1
+   ```
+
+- **`Object.seal()`**: Prevents adding or deleting properties but allows modification of existing ones.  
+   ```javascript
+   let obj = { a: 1 };
+   Object.seal(obj);
+   obj.a = 2; // Allowed
+   obj.b = 3; // Not allowed
+   console.log(obj); // { a: 2 }
+   ```
+
+---
+
+
 

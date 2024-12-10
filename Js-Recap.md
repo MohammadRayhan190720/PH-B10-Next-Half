@@ -591,5 +591,114 @@ Use the **`flat()`** method or recursion:
 --- 
 
 
+## Here are the **Top 5 Interview Questions** about **Strings** in JavaScript, along with answers:
+
+---
+
+### **1. What are strings in JavaScript, and how do you declare them?**  
+**Answer:**  
+A **string** in JavaScript is a sequence of characters used to represent text. Strings are immutable, meaning their value cannot be changed once created.
+
+**Declaration:**  
+Strings can be enclosed in single quotes (`'`), double quotes (`"`), or template literals (`` ` ``).  
+```javascript
+let str1 = 'Hello';
+let str2 = "World";
+let str3 = `Hello, ${str2}`; // Template literal
+```
+
+---
+
+### **2. What are some common methods for string manipulation in JavaScript?**  
+**Answer:**  
+Some commonly used string methods include:
+
+1. **`length`**: Returns the number of characters in a string.  
+   ```javascript
+   let str = "Hello";
+   console.log(str.length); // 5
+   ```
+
+2. **`toUpperCase()` / `toLowerCase()`**: Changes case.  
+   ```javascript
+   console.log(str.toUpperCase()); // "HELLO"
+   console.log(str.toLowerCase()); // "hello"
+   ```
+
+3. **`indexOf()`**: Finds the first occurrence of a substring.  
+   ```javascript
+   console.log(str.indexOf("l")); // 2
+   ```
+
+4. **`substring()`**: Extracts part of a string.  
+   ```javascript
+   console.log(str.substring(1, 4)); // "ell"
+   ```
+
+5. **`replace()`**: Replaces part of a string.  
+   ```javascript
+   console.log(str.replace("l", "x")); // "Hexlo"
+   ```
+
+6. **`split()`**: Splits a string into an array.  
+   ```javascript
+   console.log("a,b,c".split(",")); // ["a", "b", "c"]
+   ```
+
+---
+
+### **3. How do you concatenate strings in JavaScript?**  
+**Answer:**  
+Strings can be concatenated using:  
+1. **`+` operator**:  
+   ```javascript
+   let str1 = "Hello";
+   let str2 = "World";
+   console.log(str1 + " " + str2); // "Hello World"
+   ```
+
+2. **Template literals (`` ` ``)**:  
+   ```javascript
+   console.log(`${str1} ${str2}`); // "Hello World"
+   ```
+
+3. **`concat()` method**:  
+   ```javascript
+   console.log(str1.concat(" ", str2)); // "Hello World"
+   ```
+
+---
+
+### **4. How do you check if a string contains a substring?**  
+**Answer:**  
+- Use **`includes()`** to check if a substring exists:  
+  ```javascript
+  let str = "Hello World";
+  console.log(str.includes("World")); // true
+  ```
+
+- Use **`indexOf()`** to find the position of the substring:  
+  ```javascript
+  console.log(str.indexOf("World") !== -1); // true
+  ```
+
+- Use **`startsWith()`** or **`endsWith()`** for specific positions:  
+  ```javascript
+  console.log(str.startsWith("Hello")); // true
+  console.log(str.endsWith("World")); // true
+  ```
+
+---
+
+### **5. What is the difference between `slice()`, `substring()`, and `substr()`?**  
+**Answer:**  
+
+| Method       | Description                                                                                 | Example                                          |
+|--------------|---------------------------------------------------------------------------------------------|-------------------------------------------------|
+| **`slice()`**     | Extracts a section of the string based on start and end indices. Can accept negative indices.  | `"Hello".slice(1, 4)` → `"ell"`                 |
+| **`substring()`** | Similar to `slice()`, but does not accept negative indices.                             | `"Hello".substring(1, 4)` → `"ell"`             |
+| **`substr()`**    | Extracts a substring based on a start index and length (deprecated).                    | `"Hello".substr(1, 3)` → `"ell"`                |
+
+---
 
 

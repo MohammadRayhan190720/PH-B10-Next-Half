@@ -903,6 +903,214 @@ console.log(obj.name); // "Doe"
    ```
 
 ---
+## Here are the **Top 10 Interview Questions** about **Functions** in JavaScript with their answers:
+
+---
+
+### **1. What are functions in JavaScript? How do you define them?**  
+**Answer:**  
+A **function** is a reusable block of code designed to perform a specific task. Functions can take input (parameters), process them, and return an output.
+
+**Ways to define functions:**
+1. **Function Declaration:**  
+   ```javascript
+   function greet(name) {
+       return `Hello, ${name}`;
+   }
+   ```
+
+2. **Function Expression:**  
+   ```javascript
+   const greet = function(name) {
+       return `Hello, ${name}`;
+   };
+   ```
+
+3. **Arrow Function (ES6):**  
+   ```javascript
+   const greet = (name) => `Hello, ${name}`;
+   ```
+
+---
+
+### **2. What is the difference between `function` declaration and `function` expression?**  
+**Answer:**  
+1. **Function Declaration:**  
+   - Hoisted to the top of their scope, so they can be called before they are defined.  
+   ```javascript
+   greet(); // Works
+   function greet() {
+       console.log("Hello");
+   }
+   ```
+
+2. **Function Expression:**  
+   - Not hoisted; you cannot call them before they are defined.  
+   ```javascript
+   greet(); // Error
+   const greet = function() {
+       console.log("Hello");
+   };
+   ```
+
+---
+
+### **3. What are arrow functions, and how are they different from regular functions?**  
+**Answer:**  
+**Arrow Functions** (introduced in ES6) are a concise way to write functions. They differ from regular functions in the following ways:
+
+1. **Syntax:**  
+   ```javascript
+   const sum = (a, b) => a + b; // Arrow function
+   ```
+
+2. **No `this` binding:** Arrow functions don’t have their own `this`; they inherit it from the surrounding scope.  
+   ```javascript
+   function regular() {
+       console.log(this);
+   }
+   const arrow = () => console.log(this);
+   ```
+
+3. **Cannot be used as constructors:**  
+   ```javascript
+   const Person = (name) => { this.name = name }; // Error
+   ```
+
+---
+
+### **4. What is the purpose of `return` in a function? What happens if you omit it?**  
+**Answer:**  
+- The **`return`** statement specifies the value a function will return to the caller.  
+- If `return` is omitted, the function implicitly returns `undefined`.
+
+**Example:**
+```javascript
+function add(a, b) {
+    return a + b;
+}
+console.log(add(2, 3)); // 5
+
+function noReturn() {
+    let x = 10;
+}
+console.log(noReturn()); // undefined
+```
+
+---
+
+### **5. What are default parameters in JavaScript functions?**  
+**Answer:**  
+Default parameters allow you to assign default values to function parameters if no value is provided or if `undefined` is passed.
+
+**Example:**
+```javascript
+function greet(name = "Guest") {
+    return `Hello, ${name}`;
+}
+console.log(greet()); // "Hello, Guest"
+console.log(greet("John")); // "Hello, John"
+```
+
+---
+
+### **6. What are higher-order functions in JavaScript? Provide an example.**  
+**Answer:**  
+A **higher-order function** is a function that either:  
+1. Takes another function as an argument, or  
+2. Returns a function as a result.
+
+**Example:**
+```javascript
+function higherOrder(fn, x) {
+    return fn(x);
+}
+function double(num) {
+    return num * 2;
+}
+console.log(higherOrder(double, 5)); // 10
+```
+
+---
+
+### **7. What is a callback function, and how is it used?**  
+**Answer:**  
+A **callback function** is a function passed as an argument to another function and executed later.
+
+**Example:**
+```javascript
+function processUserInput(callback) {
+    const name = "John";
+    callback(name);
+}
+processUserInput((name) => {
+    console.log(`Hello, ${name}`); // "Hello, John"
+});
+```
+
+---
+
+### **8. What is the difference between `call()`, `apply()`, and `bind()`?**  
+**Answer:**  
+These methods are used to invoke functions with a specific `this` value.
+
+1. **`call()`**: Invokes a function with arguments passed individually.  
+   ```javascript
+   function greet(greeting) {
+       console.log(`${greeting}, ${this.name}`);
+   }
+   greet.call({ name: "John" }, "Hello"); // "Hello, John"
+   ```
+
+2. **`apply()`**: Invokes a function with arguments passed as an array.  
+   ```javascript
+   greet.apply({ name: "John" }, ["Hi"]); // "Hi, John"
+   ```
+
+3. **`bind()`**: Returns a new function with `this` set to the specified value.  
+   ```javascript
+   const boundGreet = greet.bind({ name: "John" }, "Hey");
+   boundGreet(); // "Hey, John"
+   ```
+
+---
+
+### **9. What is an Immediately Invoked Function Expression (IIFE)?**  
+**Answer:**  
+An **IIFE** is a function that is executed immediately after being defined.
+
+**Example:**
+```javascript
+(function () {
+    console.log("This runs immediately!");
+})();
+```
+
+---
+
+### **10. How do you handle arguments passed to a function when the number of arguments is unknown?**  
+**Answer:**  
+1. **Using `arguments` object (for non-arrow functions):**  
+   ```javascript
+   function sum() {
+       let total = 0;
+       for (let i = 0; i < arguments.length; i++) {
+           total += arguments[i];
+       }
+       return total;
+   }
+   console.log(sum(1, 2, 3, 4)); // 10
+   ```
+
+2. **Using rest parameters (`...args`):**  
+   ```javascript
+   function sum(...args) {
+       return args.reduce((total, num) => total + num, 0);
+   }
+   console.log(sum(1, 2, 3, 4)); // 10
+   ```
+
+---
 
 
 

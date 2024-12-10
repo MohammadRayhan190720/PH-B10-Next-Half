@@ -290,4 +290,129 @@ if (age > 18 && isStudent) {
 
 ---
 
+## Here are the **top 5 interview questions** about **Loops** in JavaScript with answers:
+
+---
+
+### **1. What are the different types of loops in JavaScript?**  
+**Answer:**  
+JavaScript provides the following loops for iterating over data:  
+
+1. **`for` loop**: Iterates a specific number of times.  
+   ```javascript
+   for (let i = 0; i < 5; i++) {
+       console.log(i); // 0, 1, 2, 3, 4
+   }
+   ```
+
+2. **`while` loop**: Executes as long as the condition is true.  
+   ```javascript
+   let i = 0;
+   while (i < 5) {
+       console.log(i);
+       i++;
+   }
+   ```
+
+3. **`do...while` loop**: Executes the block at least once, then repeats as long as the condition is true.  
+   ```javascript
+   let i = 0;
+   do {
+       console.log(i);
+       i++;
+   } while (i < 5);
+   ```
+
+4. **`for...of` loop**: Iterates over iterable objects like arrays, strings, or sets.  
+   ```javascript
+   for (let char of "hello") {
+       console.log(char); // h, e, l, l, o
+   }
+   ```
+
+5. **`for...in` loop**: Iterates over enumerable properties of an object.  
+   ```javascript
+   let obj = { a: 1, b: 2 };
+   for (let key in obj) {
+       console.log(key); // a, b
+   }
+   ```
+
+---
+
+### **2. What is the difference between `for...of` and `for...in` loops?**  
+**Answer:**  
+| Feature          | `for...in`                          | `for...of`                           |
+|------------------|-------------------------------------|-------------------------------------|
+| **Usage**        | Iterates over object keys.          | Iterates over values of iterables.  |
+| **Target**       | Works with objects.                 | Works with arrays, strings, maps, sets, etc. |
+| **Example**      |  
+**`for...in`**:  
+```javascript
+let obj = { a: 1, b: 2 };
+for (let key in obj) { console.log(key); } // Outputs: a, b
+```  
+**`for...of`**:  
+```javascript
+let arr = [10, 20];
+for (let value of arr) { console.log(value); } // Outputs: 10, 20
+```
+
+---
+
+### **3. How can you break out of a loop in JavaScript?**  
+**Answer:**  
+Use the `break` statement to exit a loop prematurely when a condition is met.  
+Example:  
+```javascript
+for (let i = 0; i < 10; i++) {
+    if (i === 5) break;
+    console.log(i); // Outputs: 0, 1, 2, 3, 4
+}
+```
+
+---
+
+### **4. How can you skip an iteration in a loop?**  
+**Answer:**  
+Use the `continue` statement to skip the current iteration and move to the next one.  
+Example:  
+```javascript
+for (let i = 0; i < 5; i++) {
+    if (i === 2) continue;
+    console.log(i); // Outputs: 0, 1, 3, 4
+}
+```
+
+---
+
+### **5. What are infinite loops, and how can you avoid them?**  
+**Answer:**  
+An **infinite loop** occurs when the termination condition in a loop is never met, causing the loop to run indefinitely.  
+
+Example of an infinite loop:  
+```javascript
+while (true) {
+    console.log("This will run forever!");
+}
+```
+
+**How to avoid:**  
+1. Ensure the condition eventually becomes `false`.  
+2. Use proper increment/decrement operations inside the loop.  
+3. Use `break` to add an exit condition.  
+
+Example of a corrected loop:  
+```javascript
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++; // Increment ensures the loop ends.
+}
+```
+
+---
+
+
+
 

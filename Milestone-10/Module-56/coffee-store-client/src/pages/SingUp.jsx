@@ -30,22 +30,21 @@ const SingUp = () => {
 
         //useing axios
 
-        axios.post("http://localhost:5000/users", users)
-        .then((data) => {
-                        if (data.data.insertedId) {
-                          Swal.fire({
-                            title: "User created",
-                            text: "New User Created Successfully!",
-                            icon: "success",
-                          });
-                        }
-
-
-        });
+        axios
+          .post("https://coffee-store-server-eight-red.vercel.app/users", users)
+          .then((data) => {
+            if (data.data.insertedId) {
+              Swal.fire({
+                title: "User created",
+                text: "New User Created Successfully!",
+                icon: "success",
+              });
+            }
+          });
 
         //send user data to database useing fetch
 
-        // fetch("http://localhost:5000/users", {
+        // fetch("https://coffee-store-server-eight-red.vercel.app/users", {
         //   method: "POST",
         //   headers: {
         //     "content-type": "application/json",

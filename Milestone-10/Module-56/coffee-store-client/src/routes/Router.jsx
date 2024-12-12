@@ -8,6 +8,7 @@ import SingUp from "../pages/SingUp";
 import Users from "../components/Users";
 import PrivetRoute from "./PrivetRoute";
 import CoffeeDetails from "../pages/coffeeDetails";
+import Users2 from "../components/Users2";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
         ),
         loader: () =>
           fetch("https://coffee-store-server-eight-red.vercel.app/users"),
+      },
+      {
+        path: "/users2",
+        element: (
+          <PrivetRoute>
+            <Users2></Users2>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/coffeedetails/:id",

@@ -28,16 +28,19 @@ const SignIn = () => {
 
         // useing axios
 
-        axios.patch(`http://localhost:5000/users/${email}`, loginInfo)
-        .then( data =>{
-          console.log(data.data)
-          navigate('/')
-        })
-
+        axios
+          .patch(
+            `https://coffee-store-server-eight-red.vercel.app/users/${email}`,
+            loginInfo
+          )
+          .then((data) => {
+            console.log(data.data);
+            navigate("/");
+          });
 
         //useing fetch
 
-        // fetch(`http://localhost:5000/users/${email}`, {
+        // fetch(`https://coffee-store-server-eight-red.vercel.app/users/${email}`, {
         //   method: "PATCH",
         //   headers: {
         //     "content-type": "application/json",

@@ -3,15 +3,13 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
-
-
+import axios from "axios";
 
 const SingUp = () => {
+  const { creatNewUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const {creatNewUser} = useContext(AuthContext);
-  const navigate = useNavigate()
-
-  const handleSignUp = e =>{
+  const handleSignUp = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -19,43 +17,57 @@ const SingUp = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    
+
     // console.log(name, photo, email, password)
 
-    creatNewUser(email,password)
-    .then(result =>{
-      // console.log(result.user)
-      navigate('/')
-      const creatAt = result.user.metadata?.creationTime;
+    creatNewUser(email, password)
+      .then((result) => {
+        // console.log(result.user)
+        navigate("/");
+        const creatAt = result.user.metadata?.creationTime;
 
-      const users = {name,photo,email,creatAt}
+        const users = { name, photo, email, creatAt };
 
-      //send user data to database
+        //useing axios
 
-      fetch("https://coffee-store-server-eight-red.vercel.app/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(users),
-      })
-        .then((res) => res.json())
+        axios.post("http://localhost:5000/users", users)
         .then((data) => {
-          // console.log(data)
-          if (data.insertedId) {
-            Swal.fire({
-              title: "User created",
-              text: "New User Created Successfully!",
-              icon: "success",
-            });
-          }
-        });
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+                        if (data.data.insertedId) {
+                          Swal.fire({
+                            title: "User created",
+                            text: "New User Created Successfully!",
+                            icon: "success",
+                          });
+                        }
 
-  }
+
+        });
+
+        //send user data to database useing fetch
+
+        // fetch("http://localhost:5000/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(users),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     // console.log(data)
+        //     if (data.insertedId) {
+        //       Swal.fire({
+        //         title: "User created",
+        //         text: "New User Created Successfully!",
+        //         icon: "success",
+        //       });
+        //     }
+        //   });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <div>
       <button className="text-3xl font-fontRancho flex gap-3 my-10 px-8">
@@ -121,7 +133,7 @@ const SingUp = () => {
                 <p>
                   Already have an Account?.please
                   <Link className="text-red-600 underline" to="/signin">
-                    Sign In 
+                    Sign In
                   </Link>
                 </p>
               </div>

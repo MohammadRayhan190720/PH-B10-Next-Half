@@ -21,7 +21,7 @@ const AddCoffee = () => {
 
     //sent data to server
 
-    fetch("https://coffee-store-server-eight-red.vercel.app/coffee", {
+    fetch("http://localhost:5000/coffee", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -45,7 +45,7 @@ const AddCoffee = () => {
     <div>
       <button className="text-3xl font-fontRancho flex gap-3 my-10 px-8">
         <FaArrowLeft />
-      <Link to='/'>Back To Home</Link>
+        <Link to="/">Back To Home</Link>
       </button>
       <div className="hero bg-[#F4F3F0] max-w-7xl mx-auto min-h-screen font-fontRancho">
         <div className="hero-content flex-col">

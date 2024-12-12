@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import axios from "axios";
 
 const SignIn = () => {
+  const { signInuser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const {signInuser} = useContext(AuthContext);
-  const navigate = useNavigate()
-
-  const handleSignIn = e =>{
+  const handleSignIn = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -17,33 +17,44 @@ const SignIn = () => {
 
     // console.log(email, password);
 
-    signInuser(email,password)
-    .then(result =>{
-      // console.log(result.user);
+    signInuser(email, password)
+      .then((result) => {
+        // console.log(result.user);
 
-      //update lastSignInTime
+        //update lastSignInTime
 
-      const lastSignInTime = result.user.metadata?.lastSignInTime;
-      const loginInfo = {email, lastSignInTime}
+        const lastSignInTime = result.user.metadata?.lastSignInTime;
+        const loginInfo = { email, lastSignInTime };
 
-      fetch(`https://coffee-store-server-eight-red.vercel.app/users/${email}`,{
-        method: "PATCH",
-        headers:{
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(loginInfo)
+        // useing axios
+
+        axios.patch(`http://localhost:5000/users/${email}`, loginInfo)
+        .then( data =>{
+          console.log(data.data)
+          navigate('/')
+        })
+
+
+        //useing fetch
+
+        // fetch(`http://localhost:5000/users/${email}`, {
+        //   method: "PATCH",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(loginInfo),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //   });
+
+        // navigate("/");
       })
-      .then(res => res.json())
-      .then(data =>{
-        console.log(data)
-      })
-
-      navigate("/");
-    })
-    .catch(err =>{
-      console.log(err.message);
-    })
-  }
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <div>
       <button className="text-3xl font-fontRancho flex gap-3 my-10 px-8">
@@ -82,8 +93,11 @@ const SignIn = () => {
                 />
               </div>
               <div className="font-semibold">
-                <p>New In This Website?.please
-                  <Link className="text-red-600 underline" to='/signup'>Sign Up</Link>
+                <p>
+                  New In This Website?.please
+                  <Link className="text-red-600 underline" to="/signup">
+                    Sign Up
+                  </Link>
                 </p>
               </div>
               <div className="form-control mt-6">

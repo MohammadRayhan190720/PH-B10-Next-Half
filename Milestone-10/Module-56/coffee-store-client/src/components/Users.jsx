@@ -1,13 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const Users = () => {
   const loadedUsers = useLoaderData();
   const [users,setUsers] = useState(loadedUsers);
+
+
+  //if I loaded data useing UseEffect 
+  // useEffect(()=>{
+  //   fetch('/')
+  //   .then(res => res.json())
+  //   .then(data =>{
+  //     console.log(data)
+  //   })
+     
+  // },[])
+
+  //if I used axios for loading data
+
+  // useEffect(()=>{
+  //    axios.get('/')
+  //    .then(data => {
+  //     console.log(data.data)
+  //    })
+    
+  // },[])
 
   const handleDelete = _id =>{
     // console.log("please delete", _id)

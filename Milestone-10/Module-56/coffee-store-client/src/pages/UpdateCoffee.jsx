@@ -1,4 +1,3 @@
-
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import Footer from "../components/Footer";
@@ -6,7 +5,8 @@ import { FaArrowLeft } from "react-icons/fa";
 
 const UpdateCoffee = () => {
   const loadedCoffee = useLoaderData();
-    const { _id, name, chef, supplier, taste, category, details, photo } = loadedCoffee;
+  const { _id, name, chef, supplier, taste, category, details, photo } =
+    loadedCoffee;
   const handleUpdateCoffee = (e) => {
     e.preventDefault();
 
@@ -19,12 +19,20 @@ const UpdateCoffee = () => {
     const details = form.details.value;
     const photo = form.photo.value;
 
-    const updateCoffee = { name, chef, supplier, taste, category, details, photo };
+    const updateCoffee = {
+      name,
+      chef,
+      supplier,
+      taste,
+      category,
+      details,
+      photo,
+    };
     // console.log(UpdateCoffee);
 
     //sent data to server
 
-    fetch(`https://coffee-store-server-eight-red.vercel.app/coffee/${_id}`, {
+    fetch(`http://localhost:5000/coffee/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

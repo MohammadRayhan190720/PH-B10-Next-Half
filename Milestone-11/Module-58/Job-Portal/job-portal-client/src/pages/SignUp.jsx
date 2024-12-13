@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import animation from '../assets/animations/Animation - 1734065203335.json'
+import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
@@ -11,9 +13,24 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
+  const { creatNewUser, setUser } = useContext(AuthContext);
+  const navigate = useNavigate()
+
   const onSubmit = (data) => {
     console.log("Form Data: ", data);
-    alert("Registration successful!");
+    const {name,photoURL,email,password} = data;
+
+    creatNewUser(email, password)
+      .then((result) => {
+        console.log(result.user)
+        setUser(result.user);
+        navigate('/')
+
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
   };
 
   return (

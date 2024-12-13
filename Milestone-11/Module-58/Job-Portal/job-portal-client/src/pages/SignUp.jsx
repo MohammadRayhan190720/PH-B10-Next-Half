@@ -4,6 +4,7 @@ import Lottie from "lottie-react";
 import animation from '../assets/animations/Animation - 1734065203335.json'
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import GoogleLogin from "../components/shared/GoogleLogin";
 
 
 const SignUp = () => {
@@ -36,7 +37,9 @@ const SignUp = () => {
   return (
     <div className="max-w-7xl mx-auto flex ">
       <div className="w-1/2 p-6 bg-white shadow-lg rounded-lg mt-10 lg:mt-16">
-        <h1 className="text-4xl lg:text-5xl font-bold text-center mb-6">Sign Up Form</h1>
+        <h1 className="text-4xl lg:text-5xl font-bold text-center mb-6">
+          Sign Up Form
+        </h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Name Field */}
           <div className="mb-4">
@@ -128,6 +131,7 @@ const SignUp = () => {
             Register
           </button>
         </form>
+        <GoogleLogin></GoogleLogin>
       </div>
       <div className="max-w-xl mt-5">
         <Lottie animationData={animation} />;

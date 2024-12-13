@@ -4,6 +4,7 @@ import Animation2 from '../assets/animations/Animation - 1734096443565.json'
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import GoogleLogin from "../components/shared/GoogleLogin";
 
 
 const SignIn = () => {
@@ -98,6 +99,7 @@ const SignIn = () => {
             Sign In
           </button>
         </form>
+        <GoogleLogin></GoogleLogin>
       </div>
       <div className="max-w-xl mt-5">
         <Lottie animationData={Animation2} />;

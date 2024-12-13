@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/logo.webp'
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthContext';
 const Navbar = () => {
 
   // const links = <>
@@ -9,6 +11,19 @@ const Navbar = () => {
   // <NavLink to='/'>Candidates</NavLink>
   // <NavLink to='/'>Contact</NavLink>
   // </>
+
+  const {user,signOutUser} = useContext(AuthContext);
+
+  const handleSignOut = ()=>{
+    signOutUser()
+    .then(()=>{
+      console.log('sign out successfully')
+    })
+    .catch(error =>{
+      console.log(error.message);
+    })
+  }
+
   return (
     <div className="navbar bg-base-100 max-w-7xl mx-auto">
       <div className="navbar-start">
@@ -142,8 +157,23 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-       <Link className='px-5 py-3 rounded-xl border' to='/signin'>Sign In</Link>
-       <Link className='px-5 py-3 rounded-xl border' to='/signup'>Sign Up</Link>
+        {user && user.email ? (
+          <button
+            onClick={handleSignOut}
+            className="px-5 py-3 rounded-xl border"
+          >
+            Sign Out
+          </button>
+        ) : (
+          <div>
+            <Link className="px-5 py-3 rounded-xl border" to="/signin">
+              Sign In
+            </Link>
+            <Link className="px-5 py-3 rounded-xl border" to="/signup">
+              Sign Up
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

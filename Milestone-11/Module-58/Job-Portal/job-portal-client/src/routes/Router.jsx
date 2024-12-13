@@ -3,6 +3,7 @@ import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../components/ErrorPage";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,8 @@ const router = createBrowserRouter([
 
     children:[
       {
+        path: '/',
+        element: <Home></Home>
 
       },
     ]

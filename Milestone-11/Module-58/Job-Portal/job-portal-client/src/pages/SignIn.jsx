@@ -3,11 +3,16 @@ import Lottie from "lottie-react";
 import Animation2 from '../assets/animations/Animation - 1734096443565.json'
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/shared/GoogleLogin";
 
 
 const SignIn = () => {
+  
+  const location = useLocation();
+  const form = location.state || '/';
+
+
   const {
     register,
     handleSubmit,
@@ -26,7 +31,7 @@ const SignIn = () => {
     .then(result =>{
       console.log(result.user)
       setUser(result.user)
-      navigate('/')
+      navigate(form)
       
     })
     .catch(err =>{

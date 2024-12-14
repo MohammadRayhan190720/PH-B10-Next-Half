@@ -107,7 +107,7 @@ const Navbar = () => {
             <details>
               <summary>
                 {" "}
-                <NavLink to="/">Find a Job</NavLink>{" "}
+                <NavLink to="/myApplications">My Applications</NavLink>{" "}
               </summary>
               <ul className="p-2">
                 <li>

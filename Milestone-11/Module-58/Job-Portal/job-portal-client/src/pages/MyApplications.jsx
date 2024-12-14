@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
+import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
+
 
 const MyApplications = () => {
 
@@ -16,9 +19,50 @@ const MyApplications = () => {
     })
 
   },[user.email]);
+
+  const handleDelete = id =>{
+    // console.log('please delete this job',id)
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+            fetch(`http://localhost:5000/job-applications/${id}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if(data.deleteCount > 0){
+                          Swal.fire({
+                            title: "Deleted!",
+                            text: "Your Job has been deleted.",
+                            icon: "success",
+                          });
+                }
+                const remainingJob = appliedJob.filter(job => job._id !== id)
+                      setAppliedJob(remainingJob)
+              });
+      }
+    });
+
+
+
+
+  }
+
+
+
   return (
     <div className="my-10">
-      <h3 className="text-center text-4xl lg:text-5xl font-bold font-mono my-5">My Application : {appliedJob.length}</h3>
+      <h3 className="text-center text-4xl lg:text-5xl font-bold font-mono my-5">
+        My Application : {appliedJob.length}
+      </h3>
 
       <div className="overflow-x-auto">
         <table className="table">
@@ -34,6 +78,7 @@ const MyApplications = () => {
               <th>Company</th>
               <th>Title</th>
               <th>Location</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -68,8 +113,12 @@ const MyApplications = () => {
                   </span>
                 </td>
                 <td>{job.title}</td>
+                <th>{job.location}</th>
                 <th>
-                 {job.location}
+                  <button onClick={()=>{handleDelete(job._id)}} className="px-3 py-1 bg-lime-500 text-red-500 text-2xl ">
+                   
+                    <AiFillDelete />
+                  </button>
                 </th>
               </tr>
             ))}

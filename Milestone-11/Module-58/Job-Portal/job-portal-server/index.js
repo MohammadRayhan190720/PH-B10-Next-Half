@@ -76,12 +76,27 @@ async function run() {
       res.send(result);
     })
 
+    app.get('/job-applications/:id',async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await jobApplicationCollection.findOne(query);
+      res.send(result);
+    })
+
 
 
     app.post('/job-applications', async (req, res) => {
       const application = req.body;
       const result = await jobApplicationCollection.insertOne(application)
 
+      res.send(result);
+
+    })
+
+    app.delete('/job-applications/:id',async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await jobApplicationCollection.deleteOne(query);
       res.send(result);
 
     })

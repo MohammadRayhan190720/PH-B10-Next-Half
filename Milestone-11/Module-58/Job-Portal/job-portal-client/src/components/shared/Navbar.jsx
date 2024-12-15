@@ -123,7 +123,7 @@ const Navbar = () => {
             <details>
               <summary>
                 {" "}
-                <NavLink to="/">Recruitrs</NavLink>{" "}
+                <NavLink to="/postAJob">Post A Job</NavLink>{" "}
               </summary>
               <ul className="p-2">
                 <li>

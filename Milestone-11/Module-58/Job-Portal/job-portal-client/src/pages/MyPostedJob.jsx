@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
+import { Link } from "react-router-dom";
+import { CiViewList } from "react-icons/ci";
+
 
 const MyPostedJob = () => {
 
@@ -19,7 +22,9 @@ const MyPostedJob = () => {
 
   return (
     <div className="max-w-7xl mx-auto my-10 ">
-      <p className="text-center font-bold text-4xl my-8">My Posted Job :{postedJob.length} </p>
+      <p className="text-center font-bold text-4xl my-8">
+        My Posted Job :{postedJob.length}{" "}
+      </p>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -29,18 +34,22 @@ const MyPostedJob = () => {
               <th>Job Title</th>
               <th>Localtion</th>
               <th>Application Deadline</th>
-              <th>Applicant</th>
-
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {postedJob.map((job, index) => (
-              <tr className="bg-base-200">
+              <tr key={job._id} className="bg-base-200">
                 <th>{index + 1}</th>
                 <td>{job.title}</td>
                 <td>{job.location}</td>
                 <td>{job.applicationDeadline}</td>
-                <td>{job?.applicant}</td>
+                <td>
+                  <Link className="flex items-center border px-5 py-3 w-fit border-green-600" to={`/viewApplications/${job._id}`}>
+                    <CiViewList />
+                    View Applications
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>

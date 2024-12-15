@@ -151,9 +151,6 @@ const Navbar = () => {
               </ul>
             </details>
           </li>
-          <li>
-            <NavLink to="/">Contact</NavLink>
-          </li>
         </ul>
       </div>
       <div className="navbar-end">

@@ -1,7 +1,13 @@
 import { useForm, useFieldArray } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import UseAuth from "../hooks/UseAuth";
 
 const PostAJob = () => {
+
+  const {user} = UseAuth();
+
+
   const {
     register,
     handleSubmit,
@@ -27,6 +33,8 @@ const PostAJob = () => {
     control,
     name: "responsibilities",
   });
+
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     // const { requirements, responsibilities, ...data } = data;
@@ -57,6 +65,8 @@ const PostAJob = () => {
           text: "Job added successfully",
           icon: "success",
         });
+        navigate('/myPostedJob')
+
       }
     })
 
@@ -290,6 +300,7 @@ const PostAJob = () => {
           <label className="block font-medium mb-2">HR Email</label>
           <input
             type="email"
+            defaultValue={user?.email}
             {...register("hr_email", { required: "HR Email is required" })}
             className="w-full border rounded px-3 py-2"
           />

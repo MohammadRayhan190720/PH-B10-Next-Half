@@ -27,89 +27,91 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const jobsCollection = client.db("jobPortal").collection("jobs");
+    const jobApplicationCollection = client
+      .db("jobPortal")
+      .collection("job_applications");
+
     //job related apis
 
-    const jobsCollection = client.db('jobPortal').collection('jobs');
-    const jobApplicationCollection = client.db('jobPortal').collection('job_applications');
+    app.get("/jobs", async (req, res) => {
+
+      //for my posted jobs
+      const email = req.query.email;
+      let query = {};
+      if(email){
+        query ={ hr_email: email }
+      }
 
 
-    app.get('/jobs', async(req, res) => {
-      const cursor = jobsCollection.find()
+      const cursor = jobsCollection.find(query);
       const result = await cursor.toArray();
 
       res.send(result);
-    })
+    });
 
     //load single job data
 
-    app.get('/jobs/:id', async(req, res) => {
+    app.get("/jobs/:id", async (req, res) => {
       const id = req.params.id;
-      const query = {_id : new ObjectId(id)}
-      const result = await jobsCollection.findOne(query)
+      const query = { _id: new ObjectId(id) };
+      const result = await jobsCollection.findOne(query);
 
       res.send(result);
-    })
+    });
 
     //post a job
-    app.post('/jobs',async(req,res) =>{
+    app.post("/jobs", async (req, res) => {
       const newJob = req.body;
       const result = await jobsCollection.insertOne(newJob);
       res.send(result);
-    })
+    });
 
     //job-applications apis
     //get all data/ get one data// get some data
 
-    app.get('/job-applications',async(req,res) =>{
+    app.get("/job-applications", async (req, res) => {
       const email = req.query.email;
-      const query = { applicant_email: email }
+      const query = { applicant_email: email };
       const result = await jobApplicationCollection.find(query).toArray();
 
       //fokira way to aggregate data
       for (const application of result) {
-        console.log(application.job_id)
-              const query = { _id: new ObjectId(application.job_id) };
-              const job = await jobsCollection.findOne(query);
+        console.log(application.job_id);
+        const query = { _id: new ObjectId(application.job_id) };
+        const job = await jobsCollection.findOne(query);
 
-              if(job){
-                application.title = job.title;
-                application.company = job.company;
-                application.company_logo = job.company_logo;
-                application.location = job.location;
-              }
-        
+        if (job) {
+          application.title = job.title;
+          application.company = job.company;
+          application.company_logo = job.company_logo;
+          application.location = job.location;
+        }
       }
 
       res.send(result);
-    })
+    });
 
-    app.get('/job-applications/:id',async(req,res)=>{
+    app.get("/job-applications/:id", async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)}
+      const query = { _id: new ObjectId(id) };
       const result = await jobApplicationCollection.findOne(query);
       res.send(result);
-    })
+    });
 
-
-
-    app.post('/job-applications', async (req, res) => {
+    app.post("/job-applications", async (req, res) => {
       const application = req.body;
-      const result = await jobApplicationCollection.insertOne(application)
+      const result = await jobApplicationCollection.insertOne(application);
 
       res.send(result);
+    });
 
-    })
-
-    app.delete('/job-applications/:id',async(req,res)=>{
+    app.delete("/job-applications/:id", async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)}
+      const query = { _id: new ObjectId(id) };
       const result = await jobApplicationCollection.deleteOne(query);
       res.send(result);
-
-    })
-
-
-
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

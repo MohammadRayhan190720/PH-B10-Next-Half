@@ -1,66 +1,80 @@
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
-import Animation2 from '../assets/animations/Animation - 1734096443565.json'
-import { useContext } from "react";
+import animation from '../assets/animations/Animation - 1734065203335.json'
 import AuthContext from "../context/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/shared/GoogleLogin";
-import axios from "axios";
 
 
-const SignIn = () => {
-  
-  const location = useLocation();
-  const form = location.state || '/';
-
-
+const SignUp = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const { signInUser,setUser} = useContext(AuthContext);
+  const { creatNewUser, setUser } = useContext(AuthContext);
   const navigate = useNavigate()
 
-    const onSubmit = (data) => {
+  const onSubmit = (data) => {
     console.log("Form Data: ", data);
+    const {name,photoURL,email,password} = data;
 
-    const {email,password} = data;
+    creatNewUser(email, password)
+      .then((result) => {
+        console.log(result.user)
+        setUser(result.user);
+        navigate('/')
 
-    signInUser(email,password)
-    .then(result =>{
-      console.log(result.user.email)
-      setUser(result.user)
-
-      const user = {email:email}
-      axios.post("http://localhost:5000/jwt",user,{
-        withCredentials:true,
       })
-      .then(res =>{
-        console.log(res.data)
-      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
-
-
-
-      navigate(form)
-      
-    })
-    .catch(err =>{
-      console.log(err.message)
-    })
-
-    }
-
+  };
 
   return (
     <div className="max-w-7xl mx-auto flex ">
       <div className="w-1/2 p-6 bg-white shadow-lg rounded-lg mt-10 lg:mt-16">
         <h1 className="text-4xl lg:text-5xl font-bold text-center mb-6">
-          Sign In Now
+          Sign Up Form
         </h1>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Name Field */}
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-700">
+              Name:
+            </label>
+            <input
+              type="text"
+              id="name"
+              {...register("name", { required: "Name is required" })}
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
+          </div>
+
+          {/* Photo URL Field */}
+          <div className="mb-4">
+            <label htmlFor="photoURL" className="block text-gray-700">
+              Photo URL:
+            </label>
+            <input
+              type="url"
+              id="photoURL"
+              {...register("photoURL", { required: "Photo URL is required" })}
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {errors.photoURL && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.photoURL.message}
+              </p>
+            )}
+          </div>
+
           {/* Email Field */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700">
@@ -114,16 +128,16 @@ const SignIn = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
           >
-            Sign In
+            Register
           </button>
         </form>
         <GoogleLogin></GoogleLogin>
       </div>
       <div className="max-w-xl mt-5">
-        <Lottie animationData={Animation2} />;
+        <Lottie animationData={animation} />;
       </div>
     </div>
   );
 };
 
-export default SignIn;
+export default SignUp;

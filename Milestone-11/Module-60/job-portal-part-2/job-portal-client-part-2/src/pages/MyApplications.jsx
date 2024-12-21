@@ -12,20 +12,20 @@ const MyApplications = () => {
   const [appliedJob,setAppliedJob] = useState([]);
 
   useEffect(() => {
-    // fetch(`http://localhost:5000/job-applications?email=${user.email}`)
-    // .then(res => res.json())
-    // .then(data => {
-    //   setAppliedJob(data);
-    //   console.log(data);
-    // })
-    axios
-      .get(`http://localhost:5000/job-applications?email=${user.email}`,{
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        setAppliedJob(res.data);
-      });
+    fetch(`http://localhost:5000/job-applications?email=${user.email}`)
+    .then(res => res.json())
+    .then(data => {
+      setAppliedJob(data);
+      console.log(data);
+    })
+    // axios
+    //   .get(`http://localhost:5000/job-applications?email=${user.email}`,{
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setAppliedJob(res.data);
+    //   });
 
   },[user.email]);
 

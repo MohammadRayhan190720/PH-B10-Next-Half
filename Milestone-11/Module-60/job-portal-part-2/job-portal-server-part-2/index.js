@@ -10,41 +10,43 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 //middleware
-app.use(
-  cors({
-    origin: ["http://localhost:5173"],
+app.use(cors(
+  {
+    origin:['http://localhost:5174'],
     credentials: true,
-  })
-);
+
+  }
+
+));
 app.use(express.json());
 app.use(cookieParser());
 
 //custom midddleware
 
-const logger = (req,res,next) =>{
-  console.log('inside logger middlewqre')
-  next();
-}
+// const logger = (req,res,next) =>{
+//   console.log('inside logger middlewqre')
+//   next();
+// }
 
-const verifyToken = (req, res, next) =>{
-  console.log('inside verify token middlewqre',req.cookies)
-  const token = req?.cookies?.token;
+// const verifyToken = (req, res, next) =>{
+//   console.log('inside verify token middlewqre',req.cookies)
+//   const token = req?.cookies?.token;
 
-  if(!token){
-    return res.status(401).send({message: 'Unauthorized access'})
-  }
-  jwt.verify(token, process.env.JWT_SECRET, (err,decode) =>{
-    if(err){
-      return res.status(401).send({message: 'Unauthorized access'})
-    }
+//   if(!token){
+//     return res.status(401).send({message: 'Unauthorized access'})
+//   }
+//   jwt.verify(token, process.env.JWT_SECRET, (err,decode) =>{
+//     if(err){
+//       return res.status(401).send({message: 'Unauthorized access'})
+//     }
 
-    req.user = decode;
+//     req.user = decode;
     
-     next();
+//      next();
 
-  });
+//   });
  
-}
+// }
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ybate.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -69,7 +71,7 @@ async function run() {
 
     //job related apis
 
-    app.get("/jobs", logger, async (req, res) => {
+    app.get("/jobs",  async (req, res) => {
       console.log('inside jobs api')
 
       //for my posted jobs
@@ -104,15 +106,26 @@ async function run() {
     });
 
     //auth related apis
-    app.post('/jwt', async (req, res) => {
+    app.post('/jwt',  (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
-      res.cookie('token', token,{
+      res
+      .cookie('token', token,{
         httpOnly: true,
         secure: false,
         sameSite: 'Strict'
       })
       .send({sucess: true})
+    })
+
+    //logout
+    app.post('/logout', (req,res) =>{
+      res
+      .clearCookie('token',{
+        httpOnly: true,
+        secure:false,
+      })
+      .send({sucess:true})
     })
 
 
@@ -121,13 +134,13 @@ async function run() {
     //job-applications apis
     //get all data/ get one data// get some data
 
-    app.get("/job-applications", verifyToken, async (req, res) => {
+    app.get("/job-applications",  async (req, res) => {
       const email = req.query.email;
       const query = { applicant_email: email };
 
-      if(req.user.email !== req.query.email){
-        return res.status(403).send({message:'forbidden access'})
-      }
+      // if(req.user.email !== req.query.email){
+      //   return res.status(403).send({message:'forbidden access'})
+      // }
 
       // console.log("cuk cuk cokies", req.cookies);
       const result = await jobApplicationCollection.find(query).toArray();

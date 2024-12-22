@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
@@ -6,15 +5,12 @@ import UseAuth from "../hooks/UseAuth";
 import Swal from "sweetalert2";
 
 const ApplyJob = () => {
+  const { id } = useParams();
 
-  const {id} = useParams();
-
-  const{user} = UseAuth();
+  const { user } = UseAuth();
   console.log(user);
 
-
   console.log(id);
-
 
   const {
     register,
@@ -26,31 +22,28 @@ const ApplyJob = () => {
     // console.log("Form Data:", data);
     const job_id = id;
     const applicant_email = user?.email;
-   const jobApplication ={...data,job_id,applicant_email}
+    const jobApplication = { ...data, job_id, applicant_email };
 
+    //send data to database
 
-   //send data to database
-
-   fetch("http://localhost:5000/job-applications", {
-     method: "POST",
-     headers: {
-       "content-type": "application/json",
-     },
-     body: JSON.stringify(jobApplication),
-   })
-     .then((res) => res.json())
-     .then((data) => {
-       console.log(data);
-       if (data.insertedId) {
-         Swal.fire({
-           title: "Good job!",
-           text: "Successfully Submit You Apply Form",
-           icon: "success",
-         });
-       }
-     });
-
-   
+    fetch("https://job-portal-server-part-2.vercel.app/job-applications", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(jobApplication),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Successfully Submit You Apply Form",
+            icon: "success",
+          });
+        }
+      });
   };
 
   return (

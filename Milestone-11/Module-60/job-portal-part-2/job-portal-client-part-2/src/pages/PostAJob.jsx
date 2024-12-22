@@ -4,9 +4,7 @@ import Swal from "sweetalert2";
 import UseAuth from "../hooks/UseAuth";
 
 const PostAJob = () => {
-
-  const {user} = UseAuth();
-
+  const { user } = UseAuth();
 
   const {
     register,
@@ -49,28 +47,25 @@ const PostAJob = () => {
 
     //send data to database
 
-    fetch("http://localhost:5000/jobs",{
+    fetch("https://job-portal-server-part-2.vercel.app/jobs", {
       method: "POST",
-      headers:{
-        'content-type': 'application/json',
+      headers: {
+        "content-type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
-    .then(res => res.json())
-    .then(data =>{
-      console.log(data)
-      if(data.insertedId){
-        Swal.fire({
-          title: "Good job!",
-          text: "Job added successfully",
-          icon: "success",
-        });
-        navigate('/myPostedJob')
-
-      }
-    })
-
-
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Job added successfully",
+            icon: "success",
+          });
+          navigate("/myPostedJob");
+        }
+      });
 
     // reset();
   };

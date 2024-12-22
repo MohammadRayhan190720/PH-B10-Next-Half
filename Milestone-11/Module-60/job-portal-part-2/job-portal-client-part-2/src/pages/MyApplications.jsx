@@ -2,24 +2,25 @@ import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import axios from "axios";
-
+// import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyApplications = () => {
+  const { user } = UseAuth();
 
-  const{user} = UseAuth();
-
-  const [appliedJob,setAppliedJob] = useState([]);
+  const [appliedJob, setAppliedJob] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/job-applications?email=${user.email}`)
-    .then(res => res.json())
-    .then(data => {
-      setAppliedJob(data);
-      console.log(data);
-    })
+    // fetch(`https://job-portal-server-part-2.vercel.app/job-applications?email=${user.email}`)
+    // .then(res => res.json())
+    // .then(data => {
+    //   setAppliedJob(data);
+    //   console.log(data);
+    // })
+
     // axios
-    //   .get(`http://localhost:5000/job-applications?email=${user.email}`,{
+    //   .get(`https://job-portal-server-part-2.vercel.app/job-applications?email=${user.email}`,{
     //     withCredentials: true,
     //   })
     //   .then((res) => {
@@ -27,9 +28,14 @@ const MyApplications = () => {
     //     setAppliedJob(res.data);
     //   });
 
-  },[user.email]);
+    //use custom hook
 
-  const handleDelete = id =>{
+    axiosSecure
+      .get(`/job-applications?email=${user.email}`)
+      .then((res) => setAppliedJob(res.data));
+  }, [user.email]);
+
+  const handleDelete = (id) => {
     // console.log('please delete this job',id)
 
     Swal.fire({
@@ -42,30 +48,27 @@ const MyApplications = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-            fetch(`http://localhost:5000/job-applications/${id}`, {
-              method: "DELETE",
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                if(data.deleteCount > 0){
-                          Swal.fire({
-                            title: "Deleted!",
-                            text: "Your Job has been deleted.",
-                            icon: "success",
-                          });
-                }
-                const remainingJob = appliedJob.filter(job => job._id !== id)
-                      setAppliedJob(remainingJob)
+        fetch(
+          `https://job-portal-server-part-2.vercel.app/job-applications/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deleteCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Job has been deleted.",
+                icon: "success",
               });
+            }
+            const remainingJob = appliedJob.filter((job) => job._id !== id);
+            setAppliedJob(remainingJob);
+          });
       }
     });
-
-
-
-
-  }
-
-
+  };
 
   return (
     <div className="my-10">
@@ -124,8 +127,12 @@ const MyApplications = () => {
                 <td>{job.title}</td>
                 <th>{job.location}</th>
                 <th>
-                  <button onClick={()=>{handleDelete(job._id)}} className="px-3 py-1 bg-lime-500 text-red-500 text-2xl ">
-                   
+                  <button
+                    onClick={() => {
+                      handleDelete(job._id);
+                    }}
+                    className="px-3 py-1 bg-lime-500 text-red-500 text-2xl "
+                  >
                     <AiFillDelete />
                   </button>
                 </th>

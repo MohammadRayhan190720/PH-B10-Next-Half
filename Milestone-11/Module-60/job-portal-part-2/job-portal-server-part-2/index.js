@@ -10,14 +10,16 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 //middleware
-app.use(cors(
-  {
-    origin:['http://localhost:5174'],
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", 
+      "https://job-portal-bba5e.web.app",
+      "https://job-portal-bba5e.firebaseapp.com"
+     ],
     credentials: true,
-
-  }
-
-));
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
@@ -28,25 +30,25 @@ app.use(cookieParser());
 //   next();
 // }
 
-// const verifyToken = (req, res, next) =>{
-//   console.log('inside verify token middlewqre',req.cookies)
-//   const token = req?.cookies?.token;
+const verifyToken = (req, res, next) =>{
+  // console.log('inside verify token middlewqre',req.cookies)
+  const token = req?.cookies?.token;
 
-//   if(!token){
-//     return res.status(401).send({message: 'Unauthorized access'})
-//   }
-//   jwt.verify(token, process.env.JWT_SECRET, (err,decode) =>{
-//     if(err){
-//       return res.status(401).send({message: 'Unauthorized access'})
-//     }
+  if(!token){
+    return res.status(401).send({message: 'Unauthorized access'})
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err,decode) =>{
+    if(err){
+      return res.status(401).send({message: 'Unauthorized access'})
+    }
 
-//     req.user = decode;
+    req.user = decode;
     
-//      next();
+     next();
 
-//   });
+  });
  
-// }
+}
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ybate.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -62,7 +64,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const jobsCollection = client.db("jobPortal").collection("jobs");
     const jobApplicationCollection = client
@@ -110,22 +112,23 @@ async function run() {
       const user = req.body;
       const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
       res
-      .cookie('token', token,{
-        httpOnly: true,
-        secure: false,
-        sameSite: 'Strict'
-      })
-      .send({sucess: true})
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+        })
+        .send({ sucess: true });
     })
 
     //logout
     app.post('/logout', (req,res) =>{
       res
-      .clearCookie('token',{
-        httpOnly: true,
-        secure:false,
-      })
-      .send({sucess:true})
+        .clearCookie("token", {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+        })
+        .send({ sucess: true });
     })
 
 
@@ -134,13 +137,13 @@ async function run() {
     //job-applications apis
     //get all data/ get one data// get some data
 
-    app.get("/job-applications",  async (req, res) => {
+    app.get("/job-applications",verifyToken,  async (req, res) => {
       const email = req.query.email;
       const query = { applicant_email: email };
 
-      // if(req.user.email !== req.query.email){
-      //   return res.status(403).send({message:'forbidden access'})
-      // }
+      if(req.user.email !== req.query.email){
+        return res.status(403).send({message:'forbidden access'})
+      }
 
       // console.log("cuk cuk cokies", req.cookies);
       const result = await jobApplicationCollection.find(query).toArray();
@@ -230,7 +233,7 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );

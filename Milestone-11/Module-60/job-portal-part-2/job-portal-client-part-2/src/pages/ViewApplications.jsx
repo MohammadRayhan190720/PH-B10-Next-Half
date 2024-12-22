@@ -3,22 +3,25 @@ import Swal from "sweetalert2";
 
 const ViewApplications = () => {
   const applicationData = useLoaderData();
-  console.log(applicationData)
+  console.log(applicationData);
 
-  const handleChangeStatus = (e,id) =>{
+  const handleChangeStatus = (e, id) => {
     // console.log(e.target.value,id);
-    const data ={
+    const data = {
       status: e.target.value,
-    }
+    };
 
-    fetch(`http://localhost:5000/job-applications/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(res => res.json())
+    fetch(
+      `https://job-portal-server-part-2.vercel.app/job-applications/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.modifiedCount > 0) {
@@ -29,7 +32,7 @@ const ViewApplications = () => {
           });
         }
       });
-  }
+  };
 
   return (
     <div className="max-w-7xl mx-auto my-5">
@@ -56,7 +59,7 @@ const ViewApplications = () => {
                 <td>{data.phone}</td>
                 <td>
                   <select
-                  onChange={(e) => handleChangeStatus(e,data._id)}
+                    onChange={(e) => handleChangeStatus(e, data._id)}
                     defaultValue={data.status || "change status"}
                     className="select select-bordered select-sm w-full max-w-xs"
                   >

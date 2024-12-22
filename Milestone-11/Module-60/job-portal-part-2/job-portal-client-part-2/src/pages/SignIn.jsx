@@ -1,18 +1,15 @@
 import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
-import Animation2 from '../assets/animations/Animation - 1734096443565.json'
+import Animation2 from "../assets/animations/Animation - 1734096443565.json";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/shared/GoogleLogin";
 import axios from "axios";
 
-
 const SignIn = () => {
-  
   const location = useLocation();
-  const form = location.state || '/';
-
+  const form = location.state || "/";
 
   const {
     register,
@@ -20,39 +17,33 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
 
-  const { signInUser,setUser} = useContext(AuthContext);
-  const navigate = useNavigate()
+  const { signInUser, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const onSubmit = (data) => {
+  const onSubmit = (data) => {
     console.log("Form Data: ", data);
 
-    const {email,password} = data;
+    const { email, password } = data;
 
-    signInUser(email,password)
-    .then(result =>{
-      console.log(result.user.email)
-      setUser(result.user)
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result.user.email);
+        setUser(result.user);
 
-      // const user = {email:email}
-      // axios.post("http://localhost:5000/jwt",user,{
-      //   withCredentials:true,
-      // })
-      // .then(res =>{
-      //   console.log(res.data)
-      // })
+        // const user = {email:email}
+        // axios.post("https://job-portal-server-part-2.vercel.app/jwt",user,{
+        //   withCredentials:true,
+        // })
+        // .then(res =>{
+        //   console.log(res.data)
+        // })
 
-
-
-
-      navigate(form)
-      
-    })
-    .catch(err =>{
-      console.log(err.message)
-    })
-
-    }
-
+        navigate(form);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <div className="max-w-7xl mx-auto flex ">

@@ -3,22 +3,21 @@ import UseAuth from "../hooks/UseAuth";
 import { Link } from "react-router-dom";
 import { CiViewList } from "react-icons/ci";
 
-
 const MyPostedJob = () => {
-
-  const [postedJob,setPostedJob] = useState([])
+  const [postedJob, setPostedJob] = useState([]);
   // console.log(postedJob)
-  const {user} = UseAuth();
+  const { user } = UseAuth();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/jobs?email=${user.email}`)
-    .then(res => res.json())
-    .then(data =>{
-      console.log(data);
-      setPostedJob(data);
-    })
-  },[user.email])
-
+    fetch(
+      `https://job-portal-server-part-2.vercel.app/jobs?email=${user.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPostedJob(data);
+      });
+  }, [user.email]);
 
   return (
     <div className="max-w-7xl mx-auto my-10 ">
@@ -45,7 +44,10 @@ const MyPostedJob = () => {
                 <td>{job.location}</td>
                 <td>{job.applicationDeadline}</td>
                 <td>
-                  <Link className="flex items-center border px-5 py-3 w-fit border-green-600" to={`/viewApplications/${job._id}`}>
+                  <Link
+                    className="flex items-center border px-5 py-3 w-fit border-green-600"
+                    to={`/viewApplications/${job._id}`}
+                  >
                     <CiViewList />
                     View Applications
                   </Link>

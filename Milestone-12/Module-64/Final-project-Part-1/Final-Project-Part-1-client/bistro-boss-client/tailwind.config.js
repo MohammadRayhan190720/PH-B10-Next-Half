@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         fontInter: ["Inter", "serif"],
       },
+      backgroundImage:{
+        'bannerBg': "url('/src/assets/home/chef-service.jpg')",
+      }
     },
   },
   plugins: [require("daisyui")],

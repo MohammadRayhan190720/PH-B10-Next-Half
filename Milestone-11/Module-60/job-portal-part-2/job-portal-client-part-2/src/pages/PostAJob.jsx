@@ -43,11 +43,19 @@ const PostAJob = () => {
     data.responsibilities = data.responsibilities
       .map((item) => item.value.split(","))
       .flat();
+    
+      console.log(data)
+    
+    data.salaryRange.min = parseInt(data.salaryRange.min)
+    data.salaryRange.max = parseInt(data.salaryRange.max)
+
+
+
     console.log("Job Post Data:", data);
 
     //send data to database
 
-    fetch("https://job-portal-server-part-2.vercel.app/jobs", {
+    fetch("http://localhost:5000/jobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -295,6 +303,7 @@ const PostAJob = () => {
           <label className="block font-medium mb-2">HR Email</label>
           <input
             type="email"
+            readOnly
             defaultValue={user?.email}
             {...register("hr_email", { required: "HR Email is required" })}
             className="w-full border rounded px-3 py-2"

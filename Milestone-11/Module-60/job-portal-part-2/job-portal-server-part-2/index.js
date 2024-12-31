@@ -74,17 +74,44 @@ async function run() {
     //job related apis
 
     app.get("/jobs",  async (req, res) => {
-      console.log('inside jobs api')
+      // console.log('inside jobs api')
 
       //for my posted jobs
       const email = req.query.email;
+      //sort by salary
+      const sort = req.query?.sort;
+      //search by location
+      const search = req.query?.search
+      
+      //filter by min and max
+      const min = req.query?.min;
+      const max = req.query?.max;
+
       let query = {};
+      let sortQuery = {};
+
+
       if(email){
         query ={ hr_email: email }
       }
 
+      if(sort == "true"){
+        sortQuery = { "salaryRange.min": -1 };
+      }
 
-      const cursor = jobsCollection.find(query);
+      if(search){
+        query.location = { $regex: search, $options: "i"}
+      }
+
+      if(min && max){
+        query = {
+          ...query,
+          "salaryRange.min":{ $gte: parseInt(min)},
+          "salaryRange.max":{ $lte: parseInt(max)},
+        }
+      }
+
+      const cursor = jobsCollection.find(query).sort(sortQuery);
       const result = await cursor.toArray();
 
       res.send(result);

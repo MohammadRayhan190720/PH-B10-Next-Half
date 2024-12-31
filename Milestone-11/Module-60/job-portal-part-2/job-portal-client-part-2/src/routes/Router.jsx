@@ -11,6 +11,7 @@ import MyApplications from "../pages/MyApplications";
 import PostAJob from "../pages/PostAJob";
 import MyPostedJob from "../pages/MyPostedJob";
 import ViewApplications from "../pages/ViewApplications";
+import AllJobs from "../pages/AllJobs";
 
 const router = createBrowserRouter([
   {
@@ -32,9 +33,7 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://job-portal-server-part-2.vercel.app/jobs/${params.id}`
-          ),
+          fetch(`http://localhost:5000/jobs/${params.id}`),
       },
       {
         path: "/applyjob/:id",
@@ -51,6 +50,15 @@ const router = createBrowserRouter([
           <PrivetRoute>
             {" "}
             <MyApplications></MyApplications>{" "}
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/allJobs",
+        element: (
+          <PrivetRoute>
+            {" "}
+            <AllJobs></AllJobs>{" "}
           </PrivetRoute>
         ),
       },
@@ -80,9 +88,7 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://job-portal-server-part-2.vercel.app/job-applications/jobs/${params.job_id}`
-          ),
+          fetch(`http://localhost:5000/job-applications/jobs/${params.job_id}`),
       },
     ],
   },

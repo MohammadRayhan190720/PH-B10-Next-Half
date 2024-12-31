@@ -107,6 +107,22 @@ const Navbar = () => {
             <details>
               <summary>
                 {" "}
+                <NavLink to="/allJobs">All Jobs</NavLink>{" "}
+              </summary>
+              <ul className="p-2">
+                <li>
+                  <a>Submenu 1</a>
+                </li>
+                <li>
+                  <a>Submenu 2</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                {" "}
                 <NavLink to="/myApplications">My Applications</NavLink>{" "}
               </summary>
               <ul className="p-2">

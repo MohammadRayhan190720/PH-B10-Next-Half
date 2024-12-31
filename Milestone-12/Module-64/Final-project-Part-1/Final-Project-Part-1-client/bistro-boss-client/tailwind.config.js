@@ -8,6 +8,7 @@ export default {
       },
       backgroundImage:{
         'bannerBg': "url('/src/assets/home/chef-service.jpg')",
+        'featureBg': "url('/src/assets/home/featured.jpg')",
       }
     },
   },

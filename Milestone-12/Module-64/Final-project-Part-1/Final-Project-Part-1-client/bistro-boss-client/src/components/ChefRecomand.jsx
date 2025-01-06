@@ -2,7 +2,7 @@ import image1 from '../assets/home/slide1.jpg'
 import DynamicTitle from './shared/DynamicTitle';
 const ChefRecomand = () => {
   return (
-    <div className='mt-10'>
+    <div className='mt-10 max-w-7xl mx-auto'>
       <DynamicTitle subHeading={'Should Try'} Heading={'CHEF RECOMONDS'}></DynamicTitle>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="card bg-base-100  shadow-xl">

@@ -14,7 +14,7 @@ import { Pagination } from "swiper/modules";
 
 const CategorySwiper = () => {
   return (
-    <div className="my-10 lg:my-14">
+    <div className="my-10 lg:my-14 max-w-7xl mx-auto">
       <div>
         <DynamicTitle
           subHeading={"From 11 am to 10 pm"}

@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from 'swiper/modules';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
@@ -18,10 +18,12 @@ const Testimonial = () => {
 
   const [review,setReview] = useState([])
 
-  axios.get('/reviews.json')
-  .then(res => {
-    setReview(res.data)
-  })
+ useEffect(() =>{
+   axios.get("http://localhost:5000/reviews")
+    .then((res) => {
+     setReview(res.data);
+   });
+ },[] )
 
 
   return (

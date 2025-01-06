@@ -29,10 +29,16 @@ async function run() {
     // await client.connect();
 
     const menuCollection = client.db("Bristro_Boss").collection("menu");
-
+    const reviewCollection = client.db("Bristro_Boss").collection("reviews");
+    
 
     app.get('/menu', async(req,res) =>{
       const cursor = menuCollection.find()
+      const result = await cursor.toArray();
+      res.send(result)
+    })
+    app.get('/reviews', async(req,res) =>{
+      const cursor = reviewCollection.find()
       const result = await cursor.toArray();
       res.send(result)
     })

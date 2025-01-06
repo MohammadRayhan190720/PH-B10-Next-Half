@@ -7,7 +7,7 @@ const Navbar = () => {
   <NavLink className="ml-5" to='/'>Contact Us</NavLink>
   <NavLink className="ml-5" to='/'>DashBoard</NavLink>
   <NavLink className="ml-5" to='/menu'>Our Menu</NavLink>
-  <NavLink className="ml-5" to='/'>Our Shop</NavLink>
+  <NavLink className="ml-5" to='/orderfood'>Order Food</NavLink>
   </>
   return (
     <div className="navbar bg-base-100 px-10 py-5">

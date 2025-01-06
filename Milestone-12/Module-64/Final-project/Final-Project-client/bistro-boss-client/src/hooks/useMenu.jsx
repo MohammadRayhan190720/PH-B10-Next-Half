@@ -6,13 +6,13 @@ const useMenu = () => {
   const [loading,setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get("/menu.json")
-    .then((res) => {
+    axios.get("http://localhost:5000/menu")
+     .then((res) => {
       // const popularItems = res.data.filter(
       //   (item) => item.category === "popular"
       // );
       setMenu(res.data);
-      setLoading(false)
+      setLoading(false);
     });
   }, []);
 

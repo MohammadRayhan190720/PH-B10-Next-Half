@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import image1 from '../assets/others/authentication2.png'
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
+
+  const creatNewUser = useContext(AuthContext);
+
+
   const {
     register,
     handleSubmit,
@@ -11,7 +16,20 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    // Handle sign-up logic here
+
+    const {email,password} = data;
+
+    // creatnewuser
+    creatNewUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+
+
   };
 
   return (

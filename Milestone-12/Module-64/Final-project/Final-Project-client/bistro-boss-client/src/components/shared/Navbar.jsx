@@ -42,8 +42,11 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/signin">
+        <Link to="/login">
           <button className="btn">Sign In</button>
+        </Link>
+        <Link to="/signup">
+          <button className="btn">Sign Up</button>
         </Link>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect,  useState } from "react";
 import { useForm } from "react-hook-form";
 import image1 from '../assets/others/authentication2.png'
 import {
@@ -19,7 +19,6 @@ const Login = () => {
     const navigate = useNavigate()
 
 
-  const captchaRef = useRef(null);
   const [disabled,setDisabled] = useState(true);
 
   useEffect(() => {
@@ -34,17 +33,17 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const handleCaptchaValidate = () => {
+  const handleValidateCaptcha = (e) => {
+    console.log(e.target.value);
 
-    const user_captcha_validate = captchaRef.current.value;
-    if(validateCaptcha(user_captcha_validate)){
-      setDisabled(false)
-
-  }else{
-    setDisabled(true);
-
-  }
-}
+    const user_captcha_validate = e.target.value;
+    console.log(user_captcha_validate);
+    if (validateCaptcha(user_captcha_validate)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
 
   const onSubmit = (data) => {
 
@@ -163,29 +162,17 @@ const Login = () => {
                 </p>
               )}
             </div>
-            <div className="form-control w-full mb-4">
+            <div className="form-control">
               <label className="label">
-                <span className="label-text">Captcha</span>
+                <LoadCanvasTemplate />
               </label>
-              <LoadCanvasTemplate />
               <input
+                onBlur={handleValidateCaptcha}
                 type="text"
-                {...register("captcha", { required: "Captcha is required" })}
-                placeholder="Enter Captcha"
-                ref={captchaRef}
-                className="input input-bordered w-full mt-2"
+                name="captcha"
+                placeholder="type the captcha above"
+                className="input input-bordered"
               />
-              {errors.captcha && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.captcha.message}
-                </p>
-              )}
-              <button
-                onClick={handleCaptchaValidate}
-                className="btn-xs btn bg-black text-white"
-              >
-                Validate
-              </button>
             </div>
 
             {/* Forgot Password */}

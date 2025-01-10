@@ -29,7 +29,7 @@ const Navbar = () => {
   <NavLink className="ml-5" to='/orderfood/salad'>Order Food</NavLink>
   </>
   return (
-    <div className="navbar bg-base-100 px-10 py-5">
+    <div className="navbar bg-base-100 px-10 py-5 fixed top-0 z-50 shadow-xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

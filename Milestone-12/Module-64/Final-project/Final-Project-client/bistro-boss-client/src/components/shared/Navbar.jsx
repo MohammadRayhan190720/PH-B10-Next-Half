@@ -1,10 +1,15 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaCartPlus } from "react-icons/fa6";
+import useAuth from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
+
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, signOutUser } = useAuth();
+
+  const [data] = useCart();
+  console.log(data)
 
   const handleSignOut = () =>{
     signOutUser()
@@ -56,10 +61,14 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
+        <button className="px-3 py-2 flex gap-1">
+          <FaCartPlus className="text-2xl mt-2" />
+          <div className="badge badge-secondary">+{data.length}</div>
+        </button>
         {user ? (
-          <button onClick={handleSignOut}
-          className="btn"
-          >Sign Out</button>
+          <button onClick={handleSignOut} className="btn">
+            Sign Out
+          </button>
         ) : (
           <>
             <Link to="/login">

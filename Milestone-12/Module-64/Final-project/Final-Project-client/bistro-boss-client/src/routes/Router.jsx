@@ -13,29 +13,31 @@ const router = createBrowserRouter([
     path: "/",
     errorElement: <h2>Error Happend</h2>,
     element: <MainLayouts></MainLayouts>,
-    children:[
+    children: [
       {
-
-        path: '/',
-        element: <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path: '/menu',
-        element:<Menu></Menu>
+        path: "/menu",
+        element: <Menu></Menu>,
       },
       {
-        path: '/orderfood/:category',
-        element:<PrivateRoute><OrderFood></OrderFood> </PrivateRoute>
+        path: "/orderfood/:category",
+        element: (
+            <OrderFood></OrderFood>
+          
+        ),
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/signup',
-        element: <SignUp></SignUp>
-      }
-    ]
+        path: "/signup",
+        element: <SignUp></SignUp>,
+      },
+    ],
   },
 ]);
 

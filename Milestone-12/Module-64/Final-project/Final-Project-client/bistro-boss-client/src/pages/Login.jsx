@@ -14,7 +14,7 @@ const Login = () => {
 
   const { signInUser,setUser,googlesignIn } = useContext(AuthContext);
     const location = useLocation();
-    const form = location.state || "/";
+    const from = location.state?.from || "/";
 
     const navigate = useNavigate()
 
@@ -53,7 +53,7 @@ const Login = () => {
         signInUser(email, password)
           .then((result) => {
             setUser(result.user);
-            navigate(form);
+            navigate(from);
           })
           .catch((err) => {
             Swal.fire({
@@ -73,7 +73,7 @@ const Login = () => {
             text: "Wecome Our Website",
             icon: "success",
           });
-          navigate("/");
+          navigate(from);
             })
             .catch((error) => {
               // console.log(error.message);

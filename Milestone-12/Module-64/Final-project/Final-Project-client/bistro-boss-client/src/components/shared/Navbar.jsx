@@ -55,16 +55,20 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-2xl">BISTRO BOSS</a>
+        <a className="btn btn-ghost text-center font-bold block">
+          <span className=" text-4xl text-black">BISTRO BOSS</span>
+          <br />
+          <span className=" text-xl text-gray-700">RESTAURANT</span>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <button className="px-3 py-2 flex gap-1">
+        <Link to="/dashboard/cart" className="px-3 py-2 flex gap-1">
           <FaCartPlus className="text-2xl mt-2" />
           <div className="badge badge-secondary">+{data.length}</div>
-        </button>
+        </Link>
         {user ? (
           <button onClick={handleSignOut} className="btn">
             Sign Out

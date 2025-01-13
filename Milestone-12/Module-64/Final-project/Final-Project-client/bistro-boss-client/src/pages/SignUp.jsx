@@ -4,6 +4,7 @@ import image1 from '../assets/others/authentication2.png'
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const SignUp = () => {
@@ -11,6 +12,7 @@ const SignUp = () => {
   const { creatNewUser, setUser, updateUserProfile, googlesignIn } =
     useContext(AuthContext);
   const navigate = useNavigate()
+  const axiosPublic = useAxiosPublic()
 
 
   const {
@@ -22,35 +24,57 @@ const SignUp = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    const {email,password} = data;
+
+    const {email,password,name} = data;
+    const photo = data?.photoURL;
 
     // creatnewuser
     creatNewUser(email,password)
       .then((result) => {
         setUser(result.user);
-        Swal.fire({
-          title: "Sign Up Successfull",
-          text: "Wecome Our Website",
-          icon: "success",
-        });
-        navigate("/");
 
-        // update profile
+        //sent user data to database
 
-        updateUserProfile({ displayName: name, photoURL: photo })
-          .then(() => {
-            setUser((previousUser) => {
-              return { ...previousUser, displayName: name, photoURL: photo };
-            });
-          })
-          .catch((error) => {
-            Swal.fire({
-              icon: "error",
-              title: `${error.message}`,
-              text: "Something went wrong!",
-            });
-            return;
-          });
+        const userInfo = {
+          name: name,
+          email: email
+        }
+        axiosPublic.post('/users',userInfo)
+        .then(res =>{
+          console.log('user data added to database')
+          if(res.data.insertedId){
+                    Swal.fire({
+                      title: "Sign Up Successfull",
+                      text: "Wecome Our Website",
+                      icon: "success",
+                    });
+                    navigate("/");
+
+                    // update profile
+
+                    updateUserProfile({ displayName: name, photoURL: photo })
+                      .then(() => {
+                        setUser((previousUser) => {
+                          return {
+                            ...previousUser,
+                            displayName: name,
+                            photoURL: photo,
+                          };
+                        });
+                      })
+                      .catch((error) => {
+                        Swal.fire({
+                          icon: "error",
+                          title: `${error.message}`,
+                          text: "Something went wrong!",
+                        });
+                        return;
+                      });
+
+          }
+        })
+
+
       })
       .catch((err) => {
         Swal.fire({

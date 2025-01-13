@@ -26,10 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/orderfood/:category",
-        element: (
-            <OrderFood></OrderFood>
-          
-        ),
+        element: <OrderFood></OrderFood>,
       },
       {
         path: "/login",
@@ -42,15 +39,19 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/dashboard',
-    element: <DashBoard></DashBoard>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashBoard> </DashBoard>
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: '/dashboard/cart',
-        element: <Cart></Cart>
+        path: "/dashboard/cart",
+        element: <Cart></Cart>,
       },
-    ]
-  }
+    ],
+  },
 ]);
 
 export default router;

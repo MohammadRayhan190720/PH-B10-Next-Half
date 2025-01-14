@@ -1,36 +1,44 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
+const SocialLogin = ({ from }) => {
+  const { googlesignIn, setUser} = useAuth();
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
-const SocialLogin = ({from}) => {
+  const handleGoogleSignIn = () => {
+    googlesignIn()
+      .then((result) => {
+        setUser(result.user);
 
-  const { googlesignIn,setUser} = useAuth();
-  const navigate = useNavigate()
-
-
-     const handleGoogleSignIn = () =>{
-            googlesignIn()
-              .then((result) => {
-                setUser(result.user);
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
             Swal.fire({
               title: "Sign Up Successfull",
               text: "Wecome Our Website",
               icon: "success",
             });
-            navigate(from);
-              })
-              .catch((error) => {
-                // console.log(error.message);
-                Swal.fire({
-                  icon: "error",
-                  title: `${error.message}`,
-                  text: "Something went wrong!",
-                });
-                return;
-              });
-    
-      }
+          }     
+        });
+         navigate(from) && navigate('/');
+      })
+      .catch((error) => {
+        // console.log(error.message);
+        Swal.fire({
+          icon: "error",
+          title: `${error.message}`,
+          text: "Something went wrong!",
+        });
+        return;
+      });
+  };
   return (
     <div>
       <div

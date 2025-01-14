@@ -10,6 +10,13 @@ import { MdMessage } from "react-icons/md";
 
 
 const DashBoard = () => {
+
+
+
+  //todo: get isAdmin value form database
+  const isAdmin = true;
+
+
   return (
     <>
       <div className="flex ">

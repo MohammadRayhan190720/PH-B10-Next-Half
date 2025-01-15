@@ -3,12 +3,13 @@ import DynamicTitle from "../../components/shared/DynamicTitle";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  const{data : users = []} = useQuery({
+  const{data : users = [],refetch} = useQuery({
     queryKey: ['users'],
     queryFn: async () =>{
       const res = await axiosSecure.get('/users');
@@ -17,7 +18,61 @@ const AllUsers = () => {
   })
 
   const handleDelete = id =>{
-    console.log(id)
+    // console.log(id)
+    
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axiosSecure.delete(`/users/${id}`)
+            .then(res =>{
+              console.log(res.data)
+              if(res.data.deletedCount > 0){
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Users has been deleted.",
+                  icon: "success",
+                });
+                refetch()
+              }
+            })
+    
+            
+          }
+        });
+  }
+
+  const handleMakeUser = user =>{
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You Want To Make Admin This Person!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Make Admin",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure.patch(`/users/admin/${user._id}`)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Created!",
+                text: `${user.name} is New Admin`,
+                icon: "success",
+              });
+              refetch();
+            }
+          });
+        }
+      });
   }
 
   return (
@@ -57,14 +112,18 @@ const AllUsers = () => {
                 </td>
                 <td>{user.email}</td>
                 <td>
-                  <button
-                    onClick={() => {
-                      handleDelete(user._id);
-                    }}
-                    className="btn bg-orange-400 btn-xl  text-white"
-                  >
-                    <FaUsers />
-                  </button>
+                  {user.role === "admin" ? (
+                    "Admin"
+                  ) : (
+                    <button
+                      onClick={() => {
+                        handleMakeUser(user);
+                      }}
+                      className="btn bg-orange-400 btn-xl  text-white"
+                    >
+                      <FaUsers />
+                    </button>
+                  )}
                 </td>
                 <th>
                   <button

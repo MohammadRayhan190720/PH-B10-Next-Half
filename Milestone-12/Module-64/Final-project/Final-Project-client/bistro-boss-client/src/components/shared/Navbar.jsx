@@ -24,7 +24,7 @@ const Navbar = () => {
   const links = <>
   <NavLink className="ml-5" to='/'>Home</NavLink>
   <NavLink className="ml-5" to='/'>Contact Us</NavLink>
-  <NavLink className="ml-5" to='/'>DashBoard</NavLink>
+  <NavLink className="ml-5" to='/dashboard'>DashBoard</NavLink>
   <NavLink className="ml-5" to='/menu'>Our Menu</NavLink>
   <NavLink className="ml-5" to='/orderfood/salad'>Order Food</NavLink>
   </>

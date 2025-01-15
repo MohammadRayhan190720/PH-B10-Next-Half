@@ -3,6 +3,7 @@ import useCart from '../../hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../../components/shared/DynamicTitle';
 
 
 const Cart = () => {
@@ -44,6 +45,13 @@ const Cart = () => {
   }
   return (
     <div>
+      <div className='border'>
+        <DynamicTitle
+          Heading="Wanna add More?"
+          subHeading="My Cart"
+        ></DynamicTitle>
+      </div>
+
       <div className="flex justify-between items-center my-5">
         <h3 className="text-3xl font-semibold uppercase">
           Total Orders : {cart.length}
@@ -87,8 +95,12 @@ const Cart = () => {
                 <td>{item.name}</td>
                 <td>$ {item.price}</td>
                 <th>
-                  <button onClick={() => {handleDelete(item._id)}}
-                   className="btn btn-ghost btn-xl  bg-red-600 text-white">
+                  <button
+                    onClick={() => {
+                      handleDelete(item._id);
+                    }}
+                    className="btn btn-ghost btn-xl  bg-red-600 text-white"
+                  >
                     <FaTrashAlt />
                   </button>
                 </th>

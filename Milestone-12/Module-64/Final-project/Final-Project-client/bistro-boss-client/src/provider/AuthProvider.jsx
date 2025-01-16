@@ -72,6 +72,7 @@ const AuthProvider = ({ children }) => {
         axiosPublic.post("/jwt", userInfo,{withCredentials: true})
         .then((res) => {
           console.log(res.data)
+          setLoading(false)
 
         });
       } else {
@@ -85,7 +86,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe;
     };
-  }, []);
+  }, [axiosPublic]);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

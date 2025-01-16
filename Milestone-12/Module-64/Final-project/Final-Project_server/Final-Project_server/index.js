@@ -2,39 +2,39 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser')
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const port = process.env.PORT || 5000;
 const app = express();
 
 //middleware
-app.use(cors(
-  {
-    origin: ['http://localhost:5173'],
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
     credentials: true,
-  }
-));
+  })
+);
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 //custom middleware
-const varifyToken = (req,res,next) =>{
+const varifyToken = (req, res, next) => {
   const token = req.cookies?.token;
-  if(!token){
-    return res.status(401).send({message: "Unauthorized Access"});
+  if (!token) {
+    return res.status(401).send({ message: "Unauthorized Access" });
   }
   //verify The token
-    jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
-      if (err) {
-        return res.status(401).send({ message: "Unauthorized access" });
-      }
+  jwt.verify(token, process.env.SECRET_TOKEN, (err, decode) => {
+    if (err) {
+      return res.status(401).send({ message: "Unauthorized access" });
+    }
 
-      req.user = decode;
+    req.user = decode;
 
-      next();
-    });
-}
+    next();
+  });
+};
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ybate.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -90,32 +90,32 @@ async function run() {
     });
 
     //jwt related apis
-    app.post('/jwt',async (req,res) =>{
+    app.post("/jwt", async (req, res) => {
       const user = req.body;
-      const token = jwt.sign(user, process.env.SECRET_TOKEN,{
-        expiresIn: '1h',
+      const token = jwt.sign(user, process.env.SECRET_TOKEN, {
+        expiresIn: "1h",
       });
       res
-      .cookie('token', token,{
-        httpOnly: true,
-        secure:false,
-        // sameSite: strict
-      })
-      .send({success: true})
-    })
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: false,
+          // sameSite: strict
+        })
+        .send({ success: true });
+    });
 
-    app.post('/logout', (req,res) =>{
+    app.post("/logout", (req, res) => {
       res
-      .clearCookie('token',{
-        httpOnly: true,
-        secure:false,
-      })
-      .send({success : true})
-  })
+        .clearCookie("token", {
+          httpOnly: true,
+          secure: false,
+        })
+        .send({ success: true });
+    });
 
     //user related apis
 
-    app.get("/users", varifyToken,  async (req, res) => {
+    app.get("/users", varifyToken, async (req, res) => {
       const result = await userCollection.find().toArray();
       res.send(result);
     });

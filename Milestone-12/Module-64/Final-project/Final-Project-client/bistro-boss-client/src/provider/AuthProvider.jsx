@@ -9,13 +9,15 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(user)
+  console.log(user);
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -40,7 +42,7 @@ const AuthProvider = ({ children }) => {
   //update profile
 
   const updateUserProfile = (updatedData) => {
-  return updateProfile(auth.currentUser, updatedData);
+    return updateProfile(auth.currentUser, updatedData);
   };
 
   //signOut
@@ -64,13 +66,21 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if(currentUser){
+      if (currentUser?.email) {
         //get token and store client side
-      }else{
-        //todo: remove token
-        
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo,{withCredentials: true})
+        .then((res) => {
+          console.log(res.data)
+
+        });
+      } else {
+              axiosPublic.post('/logout',{},{withCredentials: true})
+              .then(res =>{
+                console.log(res.data)
+                setLoading(false)
+              })
       }
-      setLoading(false);
     });
     return () => {
       unsubscribe;

@@ -25,12 +25,12 @@ const varifyToken = (req, res, next) => {
     return res.status(401).send({ message: "Unauthorized Access" });
   }
   //verify The token
-  jwt.verify(token, process.env.SECRET_TOKEN, (err, decode) => {
+  jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized access" });
     }
 
-    req.user = decode;
+    req.user = decoded;
 
     next();
   });
@@ -144,6 +144,23 @@ async function run() {
       };
       const result = await userCollection.updateOne(filter, updatedDoc);
       res.send(result);
+    });
+
+    //check isAdmin
+    app.get("/users/admin/:email", async (req, res) => {
+      const email = req.params.email;
+      if (email !== req.decoded.email) {
+        return res.status(401).send({ message: "Unauthorized access" });
+      }
+
+      const query = {email : email}
+      const user = await userCollection.findOne(query);
+
+      let admin = false;
+      if(user){
+        admin = user?.role === "admin";
+      }
+      res.send({admin})
     });
 
     app.delete("/users/:id", async (req, res) => {

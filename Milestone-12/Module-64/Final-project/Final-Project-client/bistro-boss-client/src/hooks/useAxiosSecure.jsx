@@ -3,44 +3,43 @@ import { useEffect } from "react";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
-
-
-
- const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
-  withCredentials: true,
+const axiosSecure = axios.create({
+  baseURL: "http://localhost:5000", // Set your backend URL
+  withCredentials: true, // Include cookies with requests
 });
-const useAxiosSecure = () => {
 
-  const { signOutUser} = useAuth();
+const useAxiosSecure = () => {
+  const { signOutUser } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const interceptor = axiosSecure.interceptors.response.use(
+      (response) => response, // Pass through successful responses
+      (error) => {
+        console.log("Error caught in interceptor:", error);
 
-    useEffect(() => {
-      axiosSecure.interceptors.response.use(
-        (res) => {
-          return res;
-        },
-        (error) => {
-          console.log("error caught in interceptor: ", error);
+        // Check for 401 or 403 status
+        if (error.response?.status === 401 || error.response?.status === 403) {
+          console.log("Unauthorized or Forbidden - Logging out the user");
 
-          if (error.status === 401 || error.status === 403) {
-            console.log("need to log out the user");
-
-            signOutUser()
-              .then(() => {
-                console.log("logout user");
-                navigate("/login");
-              })
-              .catch((error) => console.log(error));
-          }
-
-          return Promise.reject(error);
+          // Sign out the user and redirect to login
+          signOutUser()
+            .then(() => {
+              console.log("Logged out user");
+              navigate("/login");
+            })
+            .catch((err) => console.log("Error during logout:", err));
         }
-      );
-    }, []);
 
+        return Promise.reject(error); // Pass the error for further handling
+      }
+    );
 
+    // Cleanup function to eject the interceptor
+    return () => {
+      axiosSecure.interceptors.response.eject(interceptor);
+    };
+  }, [signOutUser, navigate]);
 
   return axiosSecure;
 };

@@ -23,7 +23,7 @@ const PopularMenu = () => {
   // },[] )
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <DynamicTitle
         subHeading={"Check It Out"}
         Heading={"From Our Menu"}

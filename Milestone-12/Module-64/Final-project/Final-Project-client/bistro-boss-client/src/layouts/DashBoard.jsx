@@ -8,6 +8,7 @@ import { MdMessage } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa6";
 import { FaUtensils } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 
 
@@ -20,7 +21,7 @@ const DashBoard = () => {
 
 
   //todo: get isAdmin value form database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin()
 
 
   return (

@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //custom middleware
-const varifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   const token = req.cookies?.token;
   if (!token) {
     return res.status(401).send({ message: "Unauthorized Access" });
@@ -30,11 +30,14 @@ const varifyToken = (req, res, next) => {
       return res.status(401).send({ message: "Unauthorized access" });
     }
 
-    req.user = decoded;
+    // req.user = decoded;
+    req.decoded = decoded;
 
     next();
   });
 };
+
+
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ybate.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -99,7 +102,7 @@ async function run() {
         .cookie("token", token, {
           httpOnly: true,
           secure: false,
-          // sameSite: strict
+          sameSite: 'strict'
         })
         .send({ success: true });
     });
@@ -113,9 +116,22 @@ async function run() {
         .send({ success: true });
     });
 
+    //use verify admin after verify token
+
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await userCollection.findOne(query);
+      const isAdmin = user?.role === "admin";
+      if (!isAdmin) {
+        return res.status(403).send({ message: "Unauthorized Access" });
+      }
+      next();
+    };
+
     //user related apis
 
-    app.get("/users", varifyToken, async (req, res) => {
+    app.get("/users", verifyToken,verifyAdmin, async (req, res) => {
       const result = await userCollection.find().toArray();
       res.send(result);
     });
@@ -134,7 +150,7 @@ async function run() {
       res.send(result);
     });
 
-    app.patch("/users/admin/:id", async (req, res) => {
+    app.patch("/users/admin/:id",verifyToken,verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const updatedDoc = {
@@ -147,23 +163,28 @@ async function run() {
     });
 
     //check isAdmin
-    app.get("/users/admin/:email", async (req, res) => {
-      const email = req.params.email;
-      if (email !== req.decoded.email) {
-        return res.status(401).send({ message: "Unauthorized access" });
-      }
+app.get("/users/admin/:email", verifyToken,verifyAdmin, async (req, res) => {
+  const email = req.params.email;
 
-      const query = {email : email}
-      const user = await userCollection.findOne(query);
+  // Compare the email from the decoded token with the requested email
+  if (email !== req.decoded.email) {
+    return res.status(401).send({ message: "Unauthorized access" });
+  }
 
-      let admin = false;
-      if(user){
-        admin = user?.role === "admin";
-      }
-      res.send({admin})
-    });
+  // Query the database to find the user
+  const query = { email: email };
+  const user = await userCollection.findOne(query);
 
-    app.delete("/users/:id", async (req, res) => {
+  let admin = false;
+  if (user) {
+    admin = user.role === "admin";
+  }
+
+  // Respond with the admin status
+  res.send({ admin });
+});
+
+    app.delete("/users/:id", verifyToken, verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await userCollection.deleteOne(query);

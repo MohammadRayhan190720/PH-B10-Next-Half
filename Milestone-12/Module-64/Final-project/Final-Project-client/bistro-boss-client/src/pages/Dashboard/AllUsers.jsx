@@ -48,7 +48,7 @@ const AllUsers = () => {
         });
   }
 
-  const handleMakeUser = user =>{
+  const handleMakeAdmin = user =>{
       Swal.fire({
         title: "Are you sure?",
         text: "You Want To Make Admin This Person!",
@@ -117,7 +117,7 @@ const AllUsers = () => {
                   ) : (
                     <button
                       onClick={() => {
-                        handleMakeUser(user);
+                        handleMakeAdmin(user);
                       }}
                       className="btn bg-orange-400 btn-xl  text-white"
                     >

@@ -49,7 +49,7 @@ const DashBoard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/manageitem">
+                  <NavLink to="/dashboard/manageitems">
                     <FiMenu />
                     Manage Item
                   </NavLink>

@@ -37,18 +37,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-  //use verify admin after verify token
 
-    const verifyAdmin = async (req, res, next) => {
-      const email = req.decoded.email;
-      const query = { email: email };
-      const user = await userCollection.findOne(query);
-      const isAdmin = user?.role === "admin";
-      if (!isAdmin) {
-        return res.status(403).send({ message: "Unauthorized Access" });
-      }
-      next();
-    };
 
 
 
@@ -73,18 +62,30 @@ async function run() {
     const cartCollection = client.db("Bristro_Boss").collection("carts");
     const userCollection = client.db("Bristro_Boss").collection("users");
 
+    //use verify admin after verify token
+
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await userCollection.findOne(query);
+      const isAdmin = user?.role === "admin";
+      if (!isAdmin) {
+        return res.status(403).send({ message: "Unauthorized Access" });
+      }
+      next();
+    };
+
     app.get("/menu", async (req, res) => {
       const cursor = menuCollection.find();
       const result = await cursor.toArray();
       res.send(result);
     });
 
-    app.post('/menu',verifyToken,verifyAdmin,   async (req,res) =>{
+    app.post("/menu", verifyToken, verifyAdmin, async (req, res) => {
       const menuItem = req.body;
-      const result = await menuCollection.insertOne(menuItem)
+      const result = await menuCollection.insertOne(menuItem);
       res.send(result);
-    })
-
+    });
 
     app.get("/reviews", async (req, res) => {
       const cursor = reviewCollection.find();
@@ -123,7 +124,7 @@ async function run() {
         .cookie("token", token, {
           httpOnly: true,
           secure: false,
-          sameSite: 'strict'
+          sameSite: "strict",
         })
         .send({ success: true });
     });
@@ -137,11 +138,9 @@ async function run() {
         .send({ success: true });
     });
 
-  
-
     //user related apis
 
-    app.get("/users", verifyToken,verifyAdmin, async (req, res) => {
+    app.get("/users", verifyToken, verifyAdmin, async (req, res) => {
       const result = await userCollection.find().toArray();
       res.send(result);
     });
@@ -160,39 +159,49 @@ async function run() {
       res.send(result);
     });
 
-    app.patch("/users/admin/:id",verifyToken,verifyAdmin, async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      const updatedDoc = {
-        $set: {
-          role: "admin",
-        },
-      };
-      const result = await userCollection.updateOne(filter, updatedDoc);
-      res.send(result);
-    });
+    app.patch(
+      "/users/admin/:id",
+      verifyToken,
+      verifyAdmin,
+      async (req, res) => {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const updatedDoc = {
+          $set: {
+            role: "admin",
+          },
+        };
+        const result = await userCollection.updateOne(filter, updatedDoc);
+        res.send(result);
+      }
+    );
 
     //check isAdmin
-app.get("/users/admin/:email", verifyToken,verifyAdmin, async (req, res) => {
-  const email = req.params.email;
+    app.get(
+      "/users/admin/:email",
+      verifyToken,
+      verifyAdmin,
+      async (req, res) => {
+        const email = req.params.email;
 
-  // Compare the email from the decoded token with the requested email
-  if (email !== req.decoded.email) {
-    return res.status(401).send({ message: "Unauthorized access" });
-  }
+        // Compare the email from the decoded token with the requested email
+        if (email !== req.decoded.email) {
+          return res.status(401).send({ message: "Unauthorized access" });
+        }
 
-  // Query the database to find the user
-  const query = { email: email };
-  const user = await userCollection.findOne(query);
+        // Query the database to find the user
+        const query = { email: email };
+        const user = await userCollection.findOne(query);
 
-  let admin = false;
-  if (user) {
-    admin = user.role === "admin";
-  }
+        let admin = false;
+        if (user) {
+          admin = user.role === "admin";
+        }
 
-  // Respond with the admin status
-  res.send({ admin });
-});
+        // Respond with the admin status
+        res.send({ admin });
+      }
+    );
 
     app.delete("/users/:id", verifyToken, verifyAdmin, async (req, res) => {
       const id = req.params.id;

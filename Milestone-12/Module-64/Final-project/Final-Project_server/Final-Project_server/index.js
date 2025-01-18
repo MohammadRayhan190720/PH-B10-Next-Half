@@ -37,6 +37,19 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+  //use verify admin after verify token
+
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await userCollection.findOne(query);
+      const isAdmin = user?.role === "admin";
+      if (!isAdmin) {
+        return res.status(403).send({ message: "Unauthorized Access" });
+      }
+      next();
+    };
+
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ybate.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -65,6 +78,14 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+
+    app.post('/menu',verifyToken,verifyAdmin,   async (req,res) =>{
+      const menuItem = req.body;
+      const result = await menuCollection.insertOne(menuItem)
+      res.send(result);
+    })
+
+
     app.get("/reviews", async (req, res) => {
       const cursor = reviewCollection.find();
       const result = await cursor.toArray();
@@ -116,18 +137,7 @@ async function run() {
         .send({ success: true });
     });
 
-    //use verify admin after verify token
-
-    const verifyAdmin = async (req, res, next) => {
-      const email = req.decoded.email;
-      const query = { email: email };
-      const user = await userCollection.findOne(query);
-      const isAdmin = user?.role === "admin";
-      if (!isAdmin) {
-        return res.status(403).send({ message: "Unauthorized Access" });
-      }
-      next();
-    };
+  
 
     //user related apis
 

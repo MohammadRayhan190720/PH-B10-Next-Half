@@ -1,22 +1,35 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+import {useQuery} from "@tanstack/react-query";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useMenu = () => {
-  const [menu, setMenu] = useState([]);
-  const [loading,setLoading] = useState(true)
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/menu")
-     .then((res) => {
-      // const popularItems = res.data.filter(
-      //   (item) => item.category === "popular"
-      // );
-      setMenu(res.data);
-      setLoading(false);
-    });
-  }, []);
+  const axiosPublic = useAxiosPublic()
+  // const [menu, setMenu] = useState([]);
+  // const [loading,setLoading] = useState(true)
 
-  return [menu,loading]
+  // useEffect(() => {
+  //   axios.get("http://localhost:5000/menu")
+  //    .then((res) => {
+  //     // const popularItems = res.data.filter(
+  //     //   (item) => item.category === "popular"
+  //     // );
+  //     setMenu(res.data);
+  //     setLoading(false);
+  //   });
+  // }, []);
+
+  const {data: menu = [],isPending : loading,refetch} = useQuery({
+    queryKey : ['menu'],
+    queryFn : async () =>{
+      const res = await axiosPublic.get('/menu')
+      return res.data
+
+    }
+  })
+
+  return [menu, loading, refetch]
 };
 
 export default useMenu;

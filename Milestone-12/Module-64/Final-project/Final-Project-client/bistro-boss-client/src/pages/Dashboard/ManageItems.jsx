@@ -6,10 +6,11 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageItems = () => {
-  const [menu] = useMenu();
+  const [menu,loading, refetch] = useMenu();
+  // console.log(menu)
   const axiosSecure = useAxiosSecure();
 
-  const handleDelete = (id) => {
+  const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -20,15 +21,16 @@ const ManageItems = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/menu/${id}`)
+        axiosSecure.delete(`/menu/${item._id}`)
         .then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             Swal.fire({
               title: "Deleted!",
-              text: "menu has been deleted.",
+              text: `${item.name} has been deleted.`,
               icon: "success",
             });
+            refetch()
           }
         });
       }
@@ -86,7 +88,7 @@ const ManageItems = () => {
                 <th>
                   <button
                     onClick={() => {
-                      handleDelete(item._id);
+                      handleDelete(item);
                     }}
                     className="btn btn-ghost btn-xl  bg-red-600 text-white"
                   >

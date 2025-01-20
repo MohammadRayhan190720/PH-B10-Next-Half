@@ -2,19 +2,41 @@ import { FaTrashAlt } from "react-icons/fa";
 import DynamicTitle from "../../components/shared/DynamicTitle";
 import useMenu from "../../hooks/useMenu";
 import { CiEdit } from "react-icons/ci";
-
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageItems = () => {
-
   const [menu] = useMenu();
+  const axiosSecure = useAxiosSecure();
 
-  const handleDelete = id =>{
-
-  }
-  const handleUpdate = id =>{
-    console.log(id)
-  }
-
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Users has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
+  const handleUpdate = (id) => {
+    console.log(id);
+  };
 
   return (
     <div>

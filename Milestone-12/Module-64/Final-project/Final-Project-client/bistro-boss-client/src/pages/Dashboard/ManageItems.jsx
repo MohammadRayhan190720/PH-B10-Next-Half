@@ -20,15 +20,15 @@ const ManageItems = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/users/${id}`).then((res) => {
+        axiosSecure.delete(`/menu/${id}`)
+        .then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             Swal.fire({
               title: "Deleted!",
-              text: "Users has been deleted.",
+              text: "menu has been deleted.",
               icon: "success",
             });
-            refetch();
           }
         });
       }

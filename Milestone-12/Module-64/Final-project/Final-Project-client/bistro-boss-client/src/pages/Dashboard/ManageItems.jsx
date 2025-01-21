@@ -4,6 +4,7 @@ import useMenu from "../../hooks/useMenu";
 import { CiEdit } from "react-icons/ci";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu,loading, refetch] = useMenu();
@@ -76,14 +77,16 @@ const ManageItems = () => {
                 <td>{item.name}</td>
                 <td>$ {item.price}</td>
                 <th>
-                  <button
-                    onClick={() => {
-                      handleUpdate(item._id);
-                    }}
-                    className="btn btn-ghost btn-xl  bg-amber-600 text-white"
-                  >
-                    <CiEdit className="text-xl" />
-                  </button>
+                  <Link to={`/dashboard/updateItems/${item._id}`}>
+                    <button
+                      onClick={() => {
+                        handleUpdate(item._id);
+                      }}
+                      className="btn btn-ghost btn-xl  bg-amber-600 text-white"
+                    >
+                      <CiEdit className="text-xl" />
+                    </button>
+                  </Link>
                 </th>
                 <th>
                   <button

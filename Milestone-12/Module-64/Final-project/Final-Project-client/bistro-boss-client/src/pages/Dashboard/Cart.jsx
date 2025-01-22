@@ -4,6 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import DynamicTitle from '../../components/shared/DynamicTitle';
+import { Link } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -45,7 +46,7 @@ const Cart = () => {
   }
   return (
     <div>
-      <div className='border'>
+      <div className="border">
         <DynamicTitle
           Heading="Wanna add More?"
           subHeading="My Cart"
@@ -61,7 +62,13 @@ const Cart = () => {
           Total Price : ${totalPrice}
         </h3>
 
-        <button className="btn bg-amber-500 text-white">Pay</button>
+        {cart.length ? (
+          <Link to={"/dashboard/payment"}>
+            <button className="btn bg-amber-500 text-white">Pay</button>
+          </Link>
+        ) : (
+          <button disabled className="btn bg-amber-500 text-white">Pay</button>
+        )}
       </div>
 
       <div className="overflow-x-auto">

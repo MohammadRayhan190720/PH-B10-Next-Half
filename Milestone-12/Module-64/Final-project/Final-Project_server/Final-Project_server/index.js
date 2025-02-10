@@ -4,6 +4,7 @@ require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -126,6 +127,8 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+
+    //payment intent
 
     //cart related apis
     app.get("/carts", async (req, res) => {

@@ -140,7 +140,7 @@ async function run() {
       })
 
       res.send({
-        clientsecret: paymentIntent.client_secret
+        clientSecret: paymentIntent.client_secret
       })
     })
 

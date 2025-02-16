@@ -62,6 +62,8 @@ async function run() {
     const reviewCollection = client.db("Bristro_Boss").collection("reviews");
     const cartCollection = client.db("Bristro_Boss").collection("carts");
     const userCollection = client.db("Bristro_Boss").collection("users");
+    const paymentCollection = client.db("Bristro_Boss").collection("payments");
+
 
     //use verify admin after verify token
 
@@ -143,6 +145,18 @@ async function run() {
         clientSecret: paymentIntent.client_secret
       })
     })
+
+    app.post('/payments', async (req,res) =>{
+      const payment = req.body;
+      const paymentResult = await paymentCollection.insertOne(payment);
+
+      //carefully delete each item from card
+      console.log('payment info',payment)
+
+      res.send(paymentResult)
+    })
+
+
 
     //cart related apis
     app.get("/carts", async (req, res) => {
